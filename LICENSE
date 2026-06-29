@@ -1,0 +1,18 @@
+Copyright (c) Tokenade. All rights reserved.
+
+Tokenade is proprietary software (the npm package `@tokenade/cli`).
+
+This repository contains the public npm launcher and installer for the
+Tokenade CLI, published for transparency and inspection. The files here
+(`bin/tokenade.js`, `install.js`, `package.json`) may be read and audited.
+
+Tokenade is a freemium product (a free tier plus a paid Pro plan). The
+Tokenade CLI binary itself is NOT distributed in this repository — it is
+downloaded at install time from the signed release manifest at
+https://downloads.tokenade.net and verified by SHA-256.
+
+You may NOT redistribute, resell, sublicense, reverse-engineer, or create
+derivative works of the Tokenade CLI binary or service. Use of Tokenade is
+governed by the terms at https://tokenade.net.
+
+For licensing questions, see https://tokenade.net.
