@@ -160,6 +160,8 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 | **System & network** | `table` · `disk` · `netstat` · `dns` · `vmstat` · `filelist` · `grep` |
 | **Web & docs** | `web` · `serp` (aliases `google`/`bing`/`ddg`) · `snapshot` · `stealth` · `curl` · `docs` · `pdf` · `notebook` |
 
+**Your own compactors.** `add-compactor --file <rules.toml>` teaches Tokenade to fold output from a command it doesn't cover yet (alias `add-filter`); `add-compactor --list` shows the ones you've added, and `add-compactor --help` prints the file format.
+
 ### Savings, receipts & reporting
 
 | Command | What it does |
@@ -357,6 +359,9 @@ the [CLI reference](#-cli-reference--every-command) above. Each reads a file or
 ```sh
 tokenade auto <file>      # auto-detect and compact
 some-noisy-cmd | tokenade auto -   # …or pipe stdin
+
+tokenade add-compactor --file my-rules.toml   # teach Tokenade a new compactor
+tokenade add-compactor --list                 # list the ones you've added
 ```
 
 ### Savings, receipts & reporting

@@ -10,6 +10,22 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.3
+
+- **Reads images for less.** Tokenade now shrinks oversized images before your
+  agent looks at them — far fewer tokens for the same content, with the full-
+  resolution copy kept in case it's needed.
+- **Teach it new tricks.** You can now add your own compactor for a command
+  Tokenade doesn't already fold.
+- **Leaner answers.** Refined guidance keeps agent responses tight and on-point
+  — lower output cost without losing substance, and it carries through to the
+  sub-tasks they spawn.
+- **Smarter trimming.** Long command output and stack traces fold more
+  intelligently, and important warnings and constraints are never dropped along
+  the way.
+- **More accurate** savings figures on your dashboard.
+- Lighter install, plus the usual reliability polish.
+
 ## 0.7.2
 
 - **Broader agent support.** Codex, Qwen Code, and Grok now work with Tokenade
