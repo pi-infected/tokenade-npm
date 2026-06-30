@@ -10,6 +10,23 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.4
+
+- **Works with more of your agents.** Tokenade now sets itself up for more
+  coding tools out of the box, including Cursor and Kilo — same automatic
+  savings, no extra steps.
+- **Knows when it's on.** Your dashboard now shows at a glance whether Tokenade
+  is active for any of your agents (not just one), and highlights where you're
+  saving the most.
+- **Savings in real dollars.** The dashboard now values what you've saved in
+  actual money, at each model's current prices.
+- **Smoother on Windows.** Commands run through Tokenade now behave correctly in
+  more Windows setups.
+- **Cleaner reads, less noise.** Long web pages keep a recoverable tail instead
+  of cutting off, noisy machine-generated diffs and more compiler output fold
+  away on their own, and connected tools announce themselves more compactly.
+- A large internal cleanup for long-term reliability, plus the usual polish.
+
 ## 0.7.3
 
 - **Reads images for less.** Tokenade now shrinks oversized images before your
