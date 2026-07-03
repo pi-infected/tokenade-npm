@@ -171,19 +171,24 @@ function get(targetUrl, redirects = 0) {
 					err.httpStatus = res.statusCode;
 					return reject(err);
 				}
-				https
-					.get(
-						{
-							host: t.hostname,
-							port,
-							path: `${t.pathname}${t.search}`,
-							socket,
-							agent: false,
-							servername: t.hostname,
-						},
-						onResponse,
-					)
-					.on("error", reject);
+				const tunneled = https.get(
+					{
+						host: t.hostname,
+						port,
+						path: `${t.pathname}${t.search}`,
+						socket,
+						agent: false,
+						servername: t.hostname,
+					},
+					onResponse,
+				);
+				tunneled.on("error", reject);
+				// The outer setTimeout only guards the CONNECT request — a
+				// stall AFTER the tunnel is established used to hang the
+				// attempt until the OS TCP timeout.
+				tunneled.setTimeout(REQUEST_TIMEOUT_MS, () => {
+					tunneled.destroy(new Error(`timeout after ${REQUEST_TIMEOUT_MS}ms (tunneled)`));
+				});
 			});
 			req = connectReq;
 		} else {

@@ -1,6 +1,6 @@
 <div align="center">
 
-# Tokenade
+# ⚡ Tokenade
 
 ### The #1 tool to cut your AI agent's token bill.
 
@@ -16,7 +16,7 @@ Set it up once, save on every prompt — same results, a fraction of the tokens.
 [![node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![free plan](https://img.shields.io/badge/free-10M%20tokens%2Fmo%2C%20no%20card-22c55e)](https://tokenade.net/signup)
 
-[**Start free**](https://tokenade.net/signup) &nbsp;·&nbsp; [**Pricing**](https://tokenade.net/pricing) &nbsp;·&nbsp; [**Dashboard**](https://tokenade.net/dashboard) &nbsp;·&nbsp; [**Report an issue**](https://github.com/pi-infected/tokenade-npm/issues)
+[**🚀 Start free**](https://tokenade.net/signup) &nbsp;·&nbsp; [**💸 Pricing**](https://tokenade.net/pricing) &nbsp;·&nbsp; [**📊 Dashboard**](https://tokenade.net/dashboard) &nbsp;·&nbsp; [**🐛 Report an issue**](https://github.com/pi-infected/tokenade-npm/issues)
 
 </div>
 
@@ -38,22 +38,22 @@ Your coding agent burns tokens on things the model never needed to see — whole
 
 > **Less tokens, same results — automatically, on every prompt.**
 
-## What it does
+## ✨ What it does
 
-| Feature | What you get |
-|---|---|
-| **Semantic code search** | Finds the right files by *meaning*, so your agent reads only what matters — not your whole project. |
-| **Command optimization** | Trims long command outputs (logs, builds, tests) down to what counts before your agent ever sees them. |
-| **MCP optimization** | Loads only the MCP tools your agent actually needs, on demand — instead of every tool, every time. |
-| **Token dashboard** | See exactly how many tokens Tokenade saved you — clear numbers, no guesswork. |
-| **Free to start** | Save up to **10M tokens/month** on the free plan — unlimited machines, no credit card. |
-| **One-command install** | Ready in seconds. Connects to your agent automatically, with zero configuration. |
+| | Feature | What you get |
+|---|---|---|
+| 🔎 | **Semantic code search** | Finds the right files by *meaning*, so your agent reads only what matters — not your whole project. |
+| 🧹 | **Command optimization** | Trims long command outputs (logs, builds, tests) down to what counts before your agent ever sees them. |
+| 🧩 | **MCP optimization** | Loads only the MCP tools your agent actually needs, on demand — instead of every tool, every time. |
+| 📊 | **Token dashboard** | See exactly how many tokens Tokenade saved you — clear numbers, no guesswork. |
+| 🛟 | **Free to start** | Save up to **10M tokens/month** on the free plan — unlimited machines, no credit card. |
+| ⚙️ | **One-command install** | Ready in seconds. Connects to your agent automatically, with zero configuration. |
 
-## Works with the agents you already use
+## 🤝 Works with the agents you already use
 
 **Claude Code** · **Cursor** · **Codex** · **GitHub Copilot** · **Gemini CLI** · **Qwen Code** · **Windsurf** · **Cline** · **Kilo Code** · **OpenCode** · **Aider** · **Hermes** · **OpenClaw** · **Antigravity** · **Grok**
 
-## Install
+## 📦 Install
 
 ```sh
 npm install -g @tokenade/cli
@@ -63,7 +63,7 @@ The `postinstall` step downloads the prebuilt binary for your platform from the 
 
 **Supported:** Linux · macOS · Windows · x64 & arm64 · Node ≥ 18.
 
-## Activate (browser — no key to type)
+## 🔓 Activate (browser — no key to type)
 
 ```sh
 tokenade login      # opens tokenade.net so you (logged into your dashboard) approve this device
@@ -72,34 +72,34 @@ tokenade install    # registers the hooks with your coding agent
 
 **Free** and **Pro** include **unlimited machines**; **Enterprise** includes 3 (plus paid extra seats). Manage them anytime at [tokenade.net/dashboard](https://tokenade.net/dashboard).
 
-## What leaves your machine
+## 🔒 What leaves your machine
 
 **Nothing**, except anonymous token-savings counts and an update check. Tokenade runs **locally**; its agent hooks live in your editor/agent config — **inspectable and reversible**.
 
-## Pricing
+## 💸 Pricing
 
 | | **Free** | **Pro** | **Enterprise** |
 |---|---|---|---|
 | Token savings | Up to **10M / mo** | Up to **100M / mo** | **Unlimited** |
 | Machines | **Unlimited** | **Unlimited** | 3 (+ paid seats) |
-| All reduction features | ✓ | ✓ | ✓ |
-| Token-savings dashboard | ✓ | ✓ | ✓ |
-| Priority support | — | ✓ | ✓ |
+| All reduction features | ✅ | ✅ | ✅ |
+| Token-savings dashboard | ✅ | ✅ | ✅ |
+| Priority support | — | ✅ | ✅ |
 | Price | **$0** — no card | **$19.90/mo** — flat, no per-token billing | **$2,990/yr** — 3 seats incl. |
 | | [Start free →](https://tokenade.net/signup) | [Go Pro →](https://tokenade.net/pricing) | [Go Enterprise →](https://tokenade.net/pricing) |
 
-## Found a bug? Tell us!
+## 🐛 Found a bug? Tell us!
 
 Tokenade is in **active beta** and your reports make it better — fast.
 
 - **Open an issue:** https://github.com/pi-infected/tokenade-npm/issues
 - **Join the beta testers on WhatsApp:** https://chat.whatsapp.com/JmBZxT41XB6AtQWgW9oNif
 
-When reporting, please include your OS, `tokenade --version`, your coding agent, and what you expected vs. what happened. The more detail, the faster we fix it.
+When reporting, please include your OS, `tokenade --version`, your coding agent, and what you expected vs. what happened. The more detail, the faster we fix it. 🙏
 
 ---
 
-## CLI reference — every command
+## 🧰 CLI reference — every command
 
 > **You rarely need any of these by hand.** After `tokenade install`, Tokenade works automatically through your agent's hooks. The CLI below is for power users, scripting, and inspection. Run `tokenade help` for the live list, and `tokenade <command> --help` where available.
 
@@ -160,8 +160,6 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 | **System & network** | `table` · `disk` · `netstat` · `dns` · `vmstat` · `filelist` · `grep` |
 | **Web & docs** | `web` · `serp` (aliases `google`/`bing`/`ddg`) · `snapshot` · `stealth` · `curl` · `docs` · `pdf` · `notebook` |
 
-**Your own compactors.** `add-compactor --file <rules.toml>` teaches Tokenade to fold output from a command it doesn't cover yet (alias `add-filter`); `add-compactor --list` shows the ones you've added, and `add-compactor --help` prints the file format.
-
 ### Savings, receipts & reporting
 
 | Command | What it does |
@@ -178,6 +176,7 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 | Command | What it does |
 |---|---|
 | `expand-ref <hash>` | Re-emit the verbatim bytes a compactor folded, by hash (alias: `xref`). |
+| `add-compactor --file <rules.toml>` | Teach Tokenade to fold output from a command it doesn't cover yet (alias: `add-filter`); `--list` shows yours, `--help` prints the file format. |
 | `expand-fold <id>` | Expand a folded log run back to its raw lines (alias: `xfold`). |
 | `disclose <stash\|read\|search>` | Progressive disclosure: stash a big blob to a file, read/search by hash. |
 | `search-stash <hash> <query>` | Fuzzy / natural-language recall within a stashed blob (BM25). |
@@ -208,7 +207,7 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 
 ---
 
-## Examples & recipes
+## 🧪 Examples & recipes
 
 Real commands, real (trimmed) output — so both humans **and coding agents** know exactly what each command does and when to reach for it. Every compactor reads a file **or `-` for stdin**, so you can pipe: `some-noisy-cmd | tokenade auto -`.
 
@@ -359,9 +358,6 @@ the [CLI reference](#-cli-reference--every-command) above. Each reads a file or
 ```sh
 tokenade auto <file>      # auto-detect and compact
 some-noisy-cmd | tokenade auto -   # …or pipe stdin
-
-tokenade add-compactor --file my-rules.toml   # teach Tokenade a new compactor
-tokenade add-compactor --list                 # list the ones you've added
 ```
 
 ### Savings, receipts & reporting
@@ -395,6 +391,7 @@ $ tokenade report --dry-run
 Compaction is never lossy-by-surprise: every fold is recoverable.
 ```text
 $ tokenade expand-ref 927a921273b2     # re-emit the exact bytes a banner folded
+$ tokenade add-compactor --file my.toml # teach Tokenade a new compactor
 $ tokenade expand-fold app-3f2a          # expand one folded log run to raw lines
 $ tokenade disclose read <hash>          # read a stashed big blob
 $ tokenade search-stash <hash> "timeout" # fuzzy recall inside a stash

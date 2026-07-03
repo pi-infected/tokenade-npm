@@ -10,6 +10,34 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.5
+
+- **Re-reading a file you just edited is now dramatically cheaper.** Agents
+  that iterate on the same files (edit, re-read, edit again) see only what
+  changed instead of paying for the whole file every time — on big files this
+  routinely saves over 90% of the re-read.
+- **Writes get smarter guidance.** When an agent is about to rewrite a whole
+  existing file for a small change, Tokenade steers it toward a targeted edit —
+  output tokens are the most expensive kind, and this trims exactly those.
+- **Better on Windows.** PowerShell file dumps and searches (`Get-Content`,
+  `Select-String` and their aliases) now get the same compaction as their
+  Unix counterparts.
+- **Remote work is covered.** Output from commands run inside containers
+  (`docker exec`, `docker compose exec`, `kubectl exec`) is now compacted
+  like the same command run locally.
+- **Screenshots from connected tools are downscaled** before they reach your
+  agent — full resolution stays recoverable on request.
+- **Web pages fetch more reliably**, with an automatic second attempt when a
+  site refuses the first one.
+- **Large code files stay fully navigable.** Structural views of big source
+  files now always list every symbol.
+- **Your stats now tell one story everywhere.** The terminal dashboard, the
+  local web dashboard and tokenade.net now count savings the same way, split
+  by token type (input / cache / output) with a consistent dollar value —
+  including netting out Tokenade's own small prompt cost.
+- Dozens of robustness fixes across compactors, hooks and installers, backed
+  by a new always-on quality harness.
+
 ## 0.7.4
 
 - **Works with more of your agents.** Tokenade now sets itself up for more
@@ -25,7 +53,7 @@
 - **Cleaner reads, less noise.** Long web pages keep a recoverable tail instead
   of cutting off, noisy machine-generated diffs and more compiler output fold
   away on their own, and connected tools announce themselves more compactly.
-- A large internal cleanup for long-term reliability, plus the usual polish.
+- A large internal cleanup for long-term reliability.
 
 ## 0.7.3
 
@@ -41,7 +69,7 @@
   intelligently, and important warnings and constraints are never dropped along
   the way.
 - **More accurate** savings figures on your dashboard.
-- Lighter install, plus the usual reliability polish.
+- Lighter install.
 
 ## 0.7.2
 
