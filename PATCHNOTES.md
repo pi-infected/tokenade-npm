@@ -10,6 +10,42 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.6
+
+- **Works on Debian 12 and older distros again.** The Linux binary no longer
+  requires a recent glibc — anything from Debian 11 / Ubuntu 20.04 onward runs.
+- **Error lines can no longer be lost.** In mixed command output, an error
+  message that lands in the middle of tabular or structured noise is now
+  always preserved verbatim, never summarized away.
+- **Unchanged commands stop re-billing.** Re-running a read-only command
+  (git status, ls, …) whose result provably didn't change now costs a few
+  dozen tokens instead of a full re-execution and re-delivery.
+- **Recovery after context compaction.** When the agent's context gets
+  compacted, Tokenade re-offers the freshest folded outputs so nothing has
+  to be re-run to get back to work.
+- **Savings are now priced at your real models.** The dashboard and
+  tokenade.net price every saved token at the rates of the model that was
+  actually in use — not a flat estimate.
+- **Cleaner web pages.** Fetched pages drop navigation, share bars, cookie
+  banners and related-links clutter more aggressively while keeping the
+  article intact — noticeably fewer tokens per page.
+- **OpenTofu support.** `tofu` output is compacted like `terraform`.
+- **Hardened install.** `tokenade doctor` now verifies the installed hooks
+  haven't been tampered with, and project-local filters require a one-time
+  trust confirmation before they run.
+- Fewer repeated-output loops, better batching guidance, and assorted
+  robustness fixes.
+
+<!-- Every release must add a `## <version>` section here; the release script
+     refuses to publish without one. (Dev-level detail lives in CHANGELOG.md.)
+
+     IMPORTANT — the source is proprietary and the implementation IS the value.
+     Notes must stay OUTCOME-ONLY. State only: bigger savings, lower overhead,
+     reliability/platform/language fixes, which agents are supported, plans, and
+     user-visible dashboard/UI changes. NEVER describe a specific capability or
+     lever, nor any mechanism, threshold, technique, file name, or exact
+     command/flag — a competitor must not be able to infer what's worth copying. -->
+
 ## 0.7.5
 
 - **Re-reading a file you just edited is now dramatically cheaper.** Agents
