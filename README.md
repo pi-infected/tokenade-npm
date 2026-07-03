@@ -177,6 +177,7 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 |---|---|
 | `expand-ref <hash>` | Re-emit the verbatim bytes a compactor folded, by hash (alias: `xref`). |
 | `add-compactor --file <rules.toml>` | Teach Tokenade to fold output from a command it doesn't cover yet (alias: `add-filter`); `--list` shows yours, `--help` prints the file format. |
+| `trust-filters [--list]` | Approve a repo's bundled `.tokenade/filters` — project filters run only once trusted. |
 | `expand-fold <id>` | Expand a folded log run back to its raw lines (alias: `xfold`). |
 | `disclose <stash\|read\|search>` | Progressive disclosure: stash a big blob to a file, read/search by hash. |
 | `search-stash <hash> <query>` | Fuzzy / natural-language recall within a stashed blob (BM25). |
@@ -392,6 +393,7 @@ Compaction is never lossy-by-surprise: every fold is recoverable.
 ```text
 $ tokenade expand-ref 927a921273b2     # re-emit the exact bytes a banner folded
 $ tokenade add-compactor --file my.toml # teach Tokenade a new compactor
+$ tokenade trust-filters                # approve a repo's bundled filters
 $ tokenade expand-fold app-3f2a          # expand one folded log run to raw lines
 $ tokenade disclose read <hash>          # read a stashed big blob
 $ tokenade search-stash <hash> "timeout" # fuzzy recall inside a stash
