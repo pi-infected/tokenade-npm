@@ -32,6 +32,28 @@ That's it. Tokenade now trims tokens on **every prompt**, in the background. No 
 
 ---
 
+## Benchmark — Token-Harness Optimizer Leaderboard
+
+Mean cost reduction on long sessions (> 200k tokens), real end-to-end Claude Code runs:
+
+| # | Optimizer | mean cost reduction | adoption | input tokens | output tokens | cache tokens |
+|---|-----------|--------------------:|----------|-------------:|--------------:|-------------:|
+| 1 | tokenade 0.7.3 | +26.70% | 25/60 | 16.21k | 3.74k | 232.71k |
+| 2 | caveman v1.9.0 | +12.00% | N/A | 18.90k | 4.59k | 268.02k |
+| 3 | claude-token-efficient b32fa8b | +1.80% | N/A | 20.30k | 5.64k | 329.71k |
+| 4 | code-review-graph 2.3.6 | +0.00%\* | 0/54 | 21.03k | 6.05k | 331.07k |
+| 5 | graphify 0.8.49 | +0.00%\* | 0/60 | 18.91k | 5.53k | 293.90k |
+| 6 | lean-ctx 3.8.4 | +0.00%\* | 0/54 | 19.60k | 5.09k | 317.41k |
+| 7 | serena v1.5.3 | +0.00%\* | 0/54 | 21.07k | 6.25k | 324.87k |
+| 8 | control baseline | +0.00% | — | 21.12k | 5.76k | 347.01k |
+| 9 | squeez 1.22.1 | −0.60% | 1/54 | 20.33k | 5.58k | 388.05k |
+| 10 | codegraph 0.9.9 | −2.00% | 1/54 | 20.85k | 5.64k | 340.65k |
+| 11 | ponytail main | −5.40% | N/A | 21.87k | 6.14k | 340.07k |
+| 12 | rtk v0.42.3 | −10.80% | N/A | 24.11k | 7.60k | 368.46k |
+| 13 | headroom 0.27.0 | −17.50% | N/A | 32.43k | 4.89k | 324.68k |
+
+\* Opt-in tool the agent never chose to use across its runs — scored at the control baseline.
+
 ## Why Tokenade
 
 Your coding agent burns tokens on things the model never needed to see — whole files when one function mattered, 2,000-line build logs, every MCP tool definition on every turn. Tokenade strips that waste **before it reaches the model**, locally, automatically.
