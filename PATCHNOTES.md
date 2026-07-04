@@ -10,6 +10,62 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.7
+
+- **Full savings across sub-agents.** When your agent spawns sub-agents,
+  each one gets its own accurate savings context and keeps compacting at
+  full strength throughout.
+- **Test failures always reach you.** Summary and tally lines from test
+  runners (the passed/failed counts printed at the end of a run) are
+  preserved verbatim in every compaction.
+- **More secrets stay out of transcripts.** Redaction now covers more
+  credential shapes across command lines, headers, config files and key
+  material.
+- **Self-monitoring got teeth.** `tokenade doctor` now flags savings
+  features that stopped firing on your machine, and warns loudly if
+  another tool wipes the agent-hook wiring.
+- **Sturdier detection on unusual output.** Several format detectors are
+  more conservative on mixed or ambiguous content — structured rewrites
+  only happen when the whole body agrees, so odd documents pass through
+  untouched.
+- **One honest headline number.** Dashboards (terminal, HTML, tokenade.net)
+  now headline a single "tokens" figure weighted at real price ratios —
+  output tokens count for what they actually cost relative to input and
+  cache reads. A legend under the number explains the weighting; the raw
+  split and per-model $ stay visible.
+- **Dollar values are the real thing.** Every saved token is now valued at
+  the actual price of the model that produced it — across all the models
+  you've used, not a single blended guess — and the same figure shows up
+  everywhere: your statusline, the terminal and web dashboards, and your
+  account page. Works for every agent whose model usage Tokenade can read.
+- **Live savings in your status bar.** Claude Code's and Qwen Code's
+  statusline now shows your current session's savings as they happen — and
+  if you already have a custom statusline, tokenade keeps your text and
+  appends its ticker to the same line. Opt out anytime.
+- **T3 Code supported.** Sessions driven through T3 Code inherit the
+  full Tokenade coverage of the agents it fronts (Claude Code hooks load
+  natively); the installer recognizes T3 and wires accordingly.
+- **Repeat-poll costs drop.** Re-running the same status/poll command in a
+  loop gets progressively cheaper, and identical images pasted twice are
+  served from cache.
+- **Hermes support.** Tokenade now compacts large tool results inside
+  NousResearch Hermes and reports Hermes usage on your dashboard.
+- **More agents covered.** Pi, OpenCode, OpenClaw and Kilo now get their
+  large tool results compacted the same way Claude Code already did.
+- **Repetitive logs collapse.** Long, near-identical log output (the same
+  line pattern repeated hundreds of times) now folds to a compact summary
+  while every distinct line — errors included — is kept verbatim.
+- **Rock-solid install and update.** Installing or uninstalling preserves
+  your existing agent configs in every case, updates are health-checked
+  before they replace the running binary, and the npm install path now
+  verifies a cryptographic signature.
+- **Snappier hooks.** Per-prompt and per-edit overhead was removed, so
+  Tokenade stays invisible on the hot path even in long sessions.
+- **Verifiable accounting.** The savings figure is a true net — Tokenade
+  counts its own footprint against it — and lifetime totals carry over
+  intact when upgrading from any earlier version. A new `tokenade
+  audit-gains` command lets you check the books yourself.
+
 ## 0.7.6
 
 - **Works on Debian 12 and older distros again.** The Linux binary no longer
