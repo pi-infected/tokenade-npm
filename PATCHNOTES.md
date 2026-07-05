@@ -10,6 +10,12 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.9
+
+- Referral program: earn 20% of the tokens your referees save — free-plan referees raise your monthly limits, paying referees earn you a monthly revenue share. Manage everything from your dashboard's new Affiliate tab.
+- Referred users get +20% on their plan limits, forever.
+- The status line now surfaces the program (and our GitHub) when there's room.
+
 ## 0.7.8
 
 - Start saving in two commands — `npm install -g @tokenade/cli` then `tokenade install`. No account needed: every machine starts with 10M free tokens.
