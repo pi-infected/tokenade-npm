@@ -10,6 +10,15 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.0
+
+- Referral program is live end to end: refer Tokenade, earn 20% of your referees' saved tokens (free plans) or a monthly revenue share (paid plans). Track everyone you referred — from install to account — right in your dashboard.
+- Referred installs get their bigger free grant automatically.
+
+## 0.7.10
+
+- Referred installs get their bigger free grant right away: the install command from a referral link now carries the code (`tokenade install --ref <code>`).
+
 ## 0.7.9
 
 - Referral program: earn 20% of the tokens your referees save — free-plan referees raise your monthly limits, paying referees earn you a monthly revenue share. Manage everything from your dashboard's new Affiliate tab.
