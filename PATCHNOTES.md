@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.1
+
+- Status line: situation-aware nudges — trial machines see the free-account offer (10M tokens/month), connected accounts rotate between the referral program and a GitHub star.
+- `--dry-run` is now guaranteed side-effect free.
+
 ## 0.8.0
 
 - Referral program is live end to end: refer Tokenade, earn 20% of your referees' saved tokens (free plans) or a monthly revenue share (paid plans). Track everyone you referred — from install to account — right in your dashboard.
