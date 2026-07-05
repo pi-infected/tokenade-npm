@@ -10,6 +10,12 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.7.8
+
+- Start saving in two commands — `npm install -g @tokenade/cli` then `tokenade install`. No account needed: every machine starts with 10M free tokens.
+- The status line now shows your remaining free tokens, and the next step whenever a limit is reached.
+- Pro can now unlock savings beyond the monthly cap with pay-as-you-save (0,20 € TTC / $0.20 excl. tax per million tokens saved).
+
 ## 0.7.7
 
 - **Full savings across sub-agents.** When your agent spawns sub-agents,

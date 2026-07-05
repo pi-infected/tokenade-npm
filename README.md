@@ -24,11 +24,10 @@ Set it up once, save on every prompt — same results, a fraction of the tokens.
 
 ```sh
 npm install -g @tokenade/cli
-tokenade login      # opens your browser to authorize this machine — no key to type
 tokenade install    # wires Tokenade into your coding agent automatically
 ```
 
-That's it. Tokenade now trims tokens on **every prompt**, in the background. No config, nothing to remember.
+That's it — **no account needed**: every machine starts with **10M free tokens**. Tokenade now trims tokens on **every prompt**, in the background. No config, nothing to remember. When the free tokens run out, [create a free account](https://tokenade.net/signup) to keep going.
 
 ---
 
@@ -85,14 +84,15 @@ The `postinstall` step downloads the prebuilt binary for your platform from the 
 
 **Supported:** Linux · macOS · Windows · x64 & arm64 · Node ≥ 18.
 
-## 🔓 Activate (browser — no key to type)
+## 🔓 Connect your account (optional — browser, no key to type)
 
 ```sh
 tokenade login      # opens tokenade.net so you (logged into your dashboard) approve this device
-tokenade install    # registers the hooks with your coding agent
 ```
 
-**Free** and **Pro** include **unlimited machines**; **Enterprise** includes 3 (plus paid extra seats). Manage them anytime at [tokenade.net/dashboard](https://tokenade.net/dashboard).
+You don't need an account to start: the trial runs on an anonymous machine id. Logging in links the machine to your dashboard and your plan's quota.
+
+**Free** and **Pro** include **unlimited machines**; **Enterprise** is sized to your fleet. Manage machines anytime at [tokenade.net/dashboard](https://tokenade.net/dashboard).
 
 ## 🔒 What leaves your machine
 
@@ -107,8 +107,8 @@ tokenade install    # registers the hooks with your coding agent
 | All reduction features | ✅ | ✅ | ✅ |
 | Token-savings dashboard | ✅ | ✅ | ✅ |
 | Priority support | — | ✅ | ✅ |
-| Price | **$0** — no card | **$19.90/mo** — flat, no per-token billing | **$2,990/yr** — 3 seats incl. |
-| | [Start free →](https://tokenade.net/signup) | [Go Pro →](https://tokenade.net/pricing) | [Go Enterprise →](https://tokenade.net/pricing) |
+| Price | **$0** — no card | **$19.90/mo** — beyond the cap: optional pay-as-you-save at $0.20/M saved | **Contact us** — custom fleet |
+| | [Start free →](https://tokenade.net/signup) | [Go Pro →](https://tokenade.net/pricing) | [hello@tokenade.net](mailto:hello@tokenade.net) |
 
 ## 🐛 Found a bug? Tell us!
 

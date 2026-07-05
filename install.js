@@ -313,12 +313,9 @@ async function main() {
 	}
 
 	console.log(`✓ tokenade ${manifest.version} installed (${target})`);
-	console.log("  Next: run `tokenade login` to activate this machine.");
+	console.log("  Next: run `tokenade install` — that's it, savings start immediately.");
 	console.log(
-		"  Login also wires up your coding agents (hooks) so token savings start —",
-	);
-	console.log(
-		"  already activated? run `tokenade install`, or `tokenade healthcheck` to verify the wiring.",
+		"  10M free tokens included, no account needed. `tokenade healthcheck` verifies the wiring.",
 	);
 }
 
