@@ -10,6 +10,10 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.2
+
+- Status line: the rotation now also invites happy users to leave a review (hidden once submitted).
+
 ## 0.8.1
 
 - Status line: situation-aware nudges — trial machines see the free-account offer (10M tokens/month), connected accounts rotate between the referral program and a GitHub star.
