@@ -10,6 +10,10 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.5
+
+- Reliability: fixed a rare case where updating could leave the integration hooks pointing at a temporary file; updates now self-heal, so hooks keep working across upgrades with no manual step.
+
 ## 0.8.4
 
 - Reliability: on some machines, usage stats could stop syncing to your dashboard while savings kept accruing locally. Syncing is now much more robust, and any backlog uploads automatically on first run — nothing is lost.
