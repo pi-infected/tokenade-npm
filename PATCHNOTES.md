@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.4
+
+- Reliability: on some machines, usage stats could stop syncing to your dashboard while savings kept accruing locally. Syncing is now much more robust, and any backlog uploads automatically on first run — nothing is lost.
+- Estimated savings are now more conservative and closer to reality on long sessions.
+
 ## 0.8.3
 
 - Share your savings: turn your dashboard into a public page and a ready-to-post image, so recommending Tokenade takes one click — with your referral link baked in.
