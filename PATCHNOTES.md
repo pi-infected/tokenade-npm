@@ -10,6 +10,15 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.6
+
+- Bigger savings on long coding sessions — measured on debug-heavy Python benchmarks, output is leaner turn over turn.
+- Broader coverage for agents without native hooks: command output those agents used to miss now gets compacted too, and upgrading cleanly retires the older setup.
+- MCP output folds automatically once wired — one command wraps every configured MCP server (and undoes it), with a per-tool breakdown of what each one costs.
+- Sharper code exploration: results favor real source over tests/docs and return complete blocks instead of clipped windows; new output modes return just the file list, a count, or signatures when that's all you need.
+- Prove it on your own repo: a new benchmark command runs your prompts with and without Tokenade and reports the real token and dollar difference.
+- Faster, lighter installs and builds.
+
 ## 0.8.5
 
 - Reliability: fixed a rare case where updating could leave the integration hooks pointing at a temporary file; updates now self-heal, so hooks keep working across upgrades with no manual step.
