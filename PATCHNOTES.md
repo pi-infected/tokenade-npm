@@ -10,6 +10,13 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.3
+
+- Share your savings: turn your dashboard into a public page and a ready-to-post image, so recommending Tokenade takes one click — with your referral link baked in.
+- Invite friends by email straight from your account: they get a bigger free grant, and you become their sponsor automatically.
+- Status line: the referral, GitHub-star and review invitations now take you straight to the right page.
+- Your saved-tokens figure now reads the same across the status line, dashboard, shareable page and emails.
+
 ## 0.8.2
 
 - Status line: the rotation now also invites happy users to leave a review (hidden once submitted).
