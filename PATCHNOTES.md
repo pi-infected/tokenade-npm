@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.7
+
+- Reliability: automatic updates and usage sync now finish far more often in the background, even when the terminal closes or the session ends mid-task.
+- Fixes a rare shell-integration hiccup on chained commands for some older setups; upgrading cleans up any leftover from those installs.
+
 ## 0.8.6
 
 - Bigger savings on long coding sessions — measured on debug-heavy Python benchmarks, output is leaner turn over turn.
