@@ -1,6 +1,6 @@
 {
   "name": "@tokenade/cli",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Tokenade \u2014 cut your AI coding agent's token bill. Installs the Tokenade CLI (a local, paid token-reduction tool; activate via your browser).",
   "homepage": "https://tokenade.net",
   "license": "UNLICENSED",

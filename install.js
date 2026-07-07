@@ -312,6 +312,28 @@ async function main() {
 		}
 	}
 
+	// macOS: guarantee the binary can execute. On Apple Silicon the kernel
+	// SIGKILLs (exit 137, "killed: 9") any arm64 Mach-O with NO code signature
+	// the moment it's exec'd — an unsigned binary never reaches main(), so
+	// tokenade cannot self-heal its own signature after a fresh install. The
+	// published build is ad-hoc (linker-)signed, but we self-heal defensively:
+	// strip com.apple.quarantine (browser/zip/AV can set it) and, if the
+	// signature does not verify, apply an ad-hoc one. codesign/xattr ship in
+	// macOS base + the Command Line Tools; failures are non-fatal.
+	if (process.platform === "darwin") {
+		const { spawnSync } = require("node:child_process");
+		const f = path.join(VENDOR, "tokenade");
+		if (fs.existsSync(f)) {
+			const q = (cmd, args) =>
+				spawnSync(cmd, args, { stdio: "ignore" });
+			q("/usr/bin/xattr", ["-dr", "com.apple.quarantine", f]);
+			const ok =
+				q("/usr/bin/codesign", ["--verify", f]).status === 0;
+			if (!ok)
+				q("/usr/bin/codesign", ["--force", "--sign", "-", f]);
+		}
+	}
+
 	console.log(`✓ tokenade ${manifest.version} installed (${target})`);
 	console.log("  Next: run `tokenade install` — that's it, savings start immediately.");
 	console.log(

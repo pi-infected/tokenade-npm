@@ -10,6 +10,12 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.10
+
+- Windows: no more console windows flashing open and shut in the background while you work — Tokenade and everything it runs now stay fully hidden.
+- More resilient integration: if the Tokenade binary is ever moved, mid-update, or otherwise unavailable, your assistant's prompt submission no longer surfaces a hook error — it just carries on.
+- macOS (Apple Silicon): installs and automatic updates are now reliably runnable straight away, with no manual step to get Tokenade going again.
+
 ## 0.8.9
 
 - Your custom status line is now left untouched: Tokenade detects a status line you set up yourself and never overwrites it — it only adds its savings ticker alongside, once.
