@@ -10,6 +10,10 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.8
+
+- Reliability: upgrading now automatically cleans up an older shell-integration leftover that could, in rare setups, break chained commands — no manual step needed.
+
 ## 0.8.7
 
 - Reliability: automatic updates and usage sync now finish far more often in the background, even when the terminal closes or the session ends mid-task.
