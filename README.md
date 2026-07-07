@@ -172,7 +172,7 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 
 ### Format compactors
 
-`auto <file|->` auto-detects the format and dispatches to the right compactor — **the one to call** if unsure. Or target a format directly (all read `<file>` or `-` for stdin):
+`read <file|->` is **the content entry point** — pass any file or piped content and Tokenade auto-detects the format and compacts it (`auto <file|->` is the long-standing alias). Or target a format directly (all read `<file>` or `-` for stdin):
 
 | Domain | Commands |
 |---|---|
@@ -379,8 +379,9 @@ the [CLI reference](#-cli-reference--every-command) above. Each reads a file or
 `-` (stdin); when unsure, let Tokenade pick:
 
 ```sh
-tokenade auto <file>      # auto-detect and compact
-some-noisy-cmd | tokenade auto -   # …or pipe stdin
+tokenade read <file>      # the content entry point — auto-detect & compact
+some-noisy-cmd | tokenade read -   # …or pipe stdin
+tokenade auto <file>      # `auto` is the long-standing alias for `read`
 ```
 
 ### Savings, receipts & reporting

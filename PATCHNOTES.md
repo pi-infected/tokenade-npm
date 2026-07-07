@@ -10,6 +10,12 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.11
+
+- Leaner CLI: one command — `tokenade read <file|->` — compacts any content and auto-detects the format, replacing the ~40 per-format commands. Noisy shell commands still go through `tokenade wrap`, now faster for simple ones.
+- Smarter web fetching: Tokenade steps aside when your assistant's own fetch already answers the question directly, and steps in where the native tool falls short (PDFs, very large pages) — fewer wasted turns to get the real answer.
+- More faithful savings: the reported token/cost figures now track much more closely what a run would actually have cost without Tokenade.
+
 ## 0.8.10
 
 - Windows: no more console windows flashing open and shut in the background while you work — Tokenade and everything it runs now stay fully hidden.
