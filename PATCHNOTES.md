@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.9
+
+- Your custom status line is now left untouched: Tokenade detects a status line you set up yourself and never overwrites it — it only adds its savings ticker alongside, once.
+- New: turn the status line addition off entirely with `tokenade statusline off` (and back on with `tokenade statusline on`). Your choice sticks across updates.
+
 ## 0.8.8
 
 - Reliability: upgrading now automatically cleans up an older shell-integration leftover that could, in rare setups, break chained commands — no manual step needed.
