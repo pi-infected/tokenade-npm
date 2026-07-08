@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.12
+
+- Clean uninstall: `tokenade uninstall` now fully removes Tokenade — it restores every config and setting it ever touched, clears its own data, and takes care of the binary. Removing the package the normal way (e.g. `npm uninstall -g @tokenade/cli`) triggers the same cleanup automatically, so nothing is left behind on your machine.
+- Consistency: the in-editor guidance always points at the current commands.
+
 ## 0.8.11
 
 - Leaner CLI: one command — `tokenade read <file|->` — compacts any content and auto-detects the format, replacing the ~40 per-format commands. Noisy shell commands still go through `tokenade wrap`, now faster for simple ones.
