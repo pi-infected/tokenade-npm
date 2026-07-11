@@ -10,6 +10,18 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.13
+
+- Web research just got much cheaper: assistant web searches are now streamlined on the fly — repeated or already-seen results stop costing you twice, and long research sessions keep far more of your context window free. Full original results remain recoverable on demand, as always.
+- Better answers from link-heavy pages: on directories, indexes and other link-dense pages, fetches now surface more of the entries that matter while sending less. Regular articles and docs read exactly as before.
+- Cleaner reads on research-heavy sites: discussion threads, Q&A pages, package registries and reference docs come back as focused, readable content, and structured API specs keep their shape — so the answer you asked for is right there.
+- Videos and social posts are readable too: fetching a video surfaces its details and, when available, its transcript for summarizing; posts from major social and community platforms come back as the post together with its discussion.
+- Web page reading picks the passages that answer your question more reliably, and asks for a summary or a full transcript now return the whole thing instead of a fragment.
+- Gemini CLI: web activity is now covered too (on current Gemini CLI versions), with the same savings guarantees as elsewhere.
+- New supported agent: Reasonix.
+- Installs now work in restricted networks: the npm package is fully self-contained, corporate/sandbox proxies are honored on every connection Tokenade makes, and optional components download reliably even when one source is unreachable.
+- Tokenade adapts to what your assistant supports: each integration is validated at install and update time, and picks the best available integration path per agent and version automatically.
+
 ## 0.8.12
 
 - Clean uninstall: `tokenade uninstall` now fully removes Tokenade — it restores every config and setting it ever touched, clears its own data, and takes care of the binary. Removing the package the normal way (e.g. `npm uninstall -g @tokenade/cli`) triggers the same cleanup automatically, so nothing is left behind on your machine.

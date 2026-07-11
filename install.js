@@ -27,6 +27,11 @@ const http = require("node:http");
 const https = require("node:https");
 const crypto = require("node:crypto");
 const { URL } = require("node:url");
+const {
+	rustTarget,
+	platformPackageName,
+	binaryName,
+} = require("./platform.js");
 
 const DOWNLOADS_BASE =
 	process.env.TOKENADE_DOWNLOADS_BASE || "https://downloads.tokenade.net";
@@ -37,52 +42,6 @@ const VENDOR = path.join(__dirname, "vendor");
 // network error and retried, rather than hanging the whole `npm install`.
 const REQUEST_TIMEOUT_MS = Number(process.env.TOKENADE_HTTP_TIMEOUT_MS) || 30000;
 const MAX_ATTEMPTS = 4;
-
-// Is this Linux userland musl (Alpine, Void-musl, …) rather than glibc?
-// A glibc node reports its runtime glibc version in the process report header;
-// a musl node does not. We fall back to looking for the musl loader on disk.
-// When genuinely unsure we return false (glibc) — that preserves the historical
-// x86_64-gnu mapping for the overwhelming glibc majority, so a detection miss is
-// never worse than the status quo.
-function isMuslLinux() {
-	if (process.platform !== "linux") return false;
-	try {
-		const header = process.report && process.report.getReport().header;
-		if (header && typeof header.glibcVersionRuntime === "string") return false;
-		if (header && "glibcVersionRuntime" in header) {
-			// key present but not a string ⇒ no glibc runtime ⇒ musl
-			return true;
-		}
-	} catch {
-		// fall through to the on-disk probe
-	}
-	try {
-		return fs
-			.readdirSync("/lib")
-			.some((f) => f.startsWith("ld-musl-"));
-	} catch {
-		return false;
-	}
-}
-
-function rustTarget() {
-	const p = process.platform;
-	const a = process.arch;
-	if (p === "darwin")
-		return a === "arm64" ? "aarch64-apple-darwin" : "x86_64-apple-darwin";
-	if (p === "linux") {
-		if (a === "arm64") return "aarch64-unknown-linux-musl";
-		// x86_64: a fully-static musl build runs on glibc too, but musl's DNS
-		// resolver ignores /etc/nsswitch.conf — so we only hand musl to machines
-		// whose libc is already musl (Alpine et al.), and keep the proven glibc
-		// build as the default everywhere else.
-		return isMuslLinux()
-			? "x86_64-unknown-linux-musl"
-			: "x86_64-unknown-linux-gnu";
-	}
-	if (p === "win32") return "x86_64-pc-windows-gnu";
-	throw new Error(`unsupported platform: ${p}/${a}`);
-}
 
 // Resolve the proxy that applies to `targetUrl`, honouring the standard
 // HTTPS_PROXY / HTTP_PROXY / ALL_PROXY and NO_PROXY env vars (both cases).
@@ -260,6 +219,28 @@ async function downloadTo(url, dest) {
 
 async function main() {
 	const target = rustTarget();
+
+	// Fast path: the binary is already here, so the download is pure waste.
+	// It arrives one of two ways — the matching per-platform optionalDependency
+	// npm just installed from the registry, or a ./vendor copy from a previous
+	// run. Either way postinstall is a clean no-op. Crucially this returns
+	// BEFORE any network call, so an unreachable downloads.tokenade.net (blocked
+	// corporate proxy, offline sandbox) can never fail an install whose binary
+	// the registry already delivered.
+	try {
+		require.resolve(`${platformPackageName(target)}/package.json`);
+		console.log(
+			`✓ tokenade provided by ${platformPackageName(target)} (${target}) — no download needed.`,
+		);
+		return;
+	} catch {
+		// optional dep absent (skipped or no registry build) — try ./vendor.
+	}
+	if (fs.existsSync(path.join(VENDOR, binaryName()))) {
+		console.log(`✓ tokenade already vendored (${target}) — no download needed.`);
+		return;
+	}
+
 	const manifest = await fetchJson(MANIFEST_URL);
 	const entry = manifest.targets && manifest.targets[target];
 	if (!entry || !entry.url || !entry.sha256) {
