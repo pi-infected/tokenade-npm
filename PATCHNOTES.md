@@ -10,6 +10,19 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.8.15
+
+- Returning to a session pays off sooner: the cheaper trimmed-history rebuild now kicks in after a short break, not only after a long one — so more of your resumed sessions start out lighter. Full original content stays recoverable on demand, and active sessions are never touched.
+- A calmer status bar: it stays out of the way until there's a saving to show, and the running total refreshes more promptly.
+- Tidier setup: the project rule files Tokenade maintains stay clean and free of duplication across updates.
+
+## 0.8.14
+
+- Resuming a past session is now cheaper: long-idle conversations are rebuilt from a trimmed history, so picking a session back up after a break re-sends far less. The full original content stays recoverable on demand, and active sessions are never touched.
+- Your disk stays clean: Tokenade now clears out its own temporary working data — cached page reads, downscaled images, scratch files — automatically once it's no longer needed, so nothing piles up over time.
+- Sharper code navigation: `tokenade query`, `tokenade impact` and symbol lookups now surface the most central, most-depended-on results first, so the match you want tends to be at the top.
+- Even more faithful savings on web research: the reported token and cost figures now track the real cost of web searches and page reads more closely still.
+
 ## 0.8.13
 
 - Web research just got much cheaper: assistant web searches are now streamlined on the fly — repeated or already-seen results stop costing you twice, and long research sessions keep far more of your context window free. Full original results remain recoverable on demand, as always.
