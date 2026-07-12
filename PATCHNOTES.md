@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.0
+
+- Smarter session pick-ups: Tokenade now times its history trimming to each session's actual reuse pattern — a quick return comes back instantly, and a long break still gets the lighter, cheaper rebuild. Full original content stays recoverable on demand, and active sessions are never touched.
+- Tokenade now spots when a coding session re-bills its entire context without benefit — the measurement layer behind upcoming automatic cache savings, at zero overhead in your sessions.
+
 ## 0.8.15
 
 - Returning to a session pays off sooner: the cheaper trimmed-history rebuild now kicks in after a short break, not only after a long one — so more of your resumed sessions start out lighter. Full original content stays recoverable on demand, and active sessions are never touched.
