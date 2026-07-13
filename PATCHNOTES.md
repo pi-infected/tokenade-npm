@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.1
+
+- Cleaner behavior at your plan's monthly limit: once you reach it, Tokenade pauses its optimizations and tells you, then resumes automatically the moment your allowance renews or you move up a plan — nothing to re-configure. Works the same across every supported agent, shell, and operating system, and a Tokenade update never changes that state on its own.
+- Reliability: sharper handling of how Tokenade passes your everyday system commands straight through, so their output always shows up exactly as the tool intended.
+
 ## 0.9.0
 
 - Smarter session pick-ups: Tokenade now times its history trimming to each session's actual reuse pattern — a quick return comes back instantly, and a long break still gets the lighter, cheaper rebuild. Full original content stays recoverable on demand, and active sessions are never touched.
