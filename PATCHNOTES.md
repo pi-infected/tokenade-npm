@@ -10,6 +10,13 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.2
+
+- More of your coding agents now get the full treatment: command output is compacted across more of the supported tools, on every platform.
+- More reliable on Codex — its usage and savings are now captured correctly.
+- Clearer compatibility: the docs now spell out which features work with each agent, so you know exactly what to expect.
+- Release hardening.
+
 ## 0.9.1
 
 - Cleaner behavior at your plan's monthly limit: once you reach it, Tokenade pauses its optimizations and tells you, then resumes automatically the moment your allowance renews or you move up a plan — nothing to re-configure. Works the same across every supported agent, shell, and operating system, and a Tokenade update never changes that state on its own.

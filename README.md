@@ -9,7 +9,7 @@
 **Tokenade is the simplest way to slash what your coding agent sends to the model.**
 Set it up once, save on every prompt — same results, a fraction of the tokens.
 
-**Freemium** — start free (10M tokens/month, no credit card), upgrade only when you scale.
+**Freemium** — free with a free account (10M tokens/month, no credit card), upgrade only when you scale.
 
 [![npm](https://img.shields.io/npm/v/@tokenade/cli?color=8b5cf6&label=%40tokenade%2Fcli&logo=npm)](https://www.npmjs.com/package/@tokenade/cli)
 [![platforms](https://img.shields.io/badge/platforms-Linux%20%C2%B7%20macOS%20%C2%B7%20Windows-2563eb)](https://tokenade.net)
@@ -25,9 +25,10 @@ Set it up once, save on every prompt — same results, a fraction of the tokens.
 ```sh
 npm install -g @tokenade/cli
 tokenade install    # wires Tokenade into your coding agent automatically
+tokenade login      # connect your free account (opens tokenade.net to approve this device)
 ```
 
-That's it — **no account needed**: every machine starts with **10M free tokens**. Tokenade now trims tokens on **every prompt**, in the background. No config, nothing to remember. When the free tokens run out, [create a free account](https://tokenade.net/signup) to keep going.
+That's it — Tokenade is **free**, you just need a free account. After `tokenade login` it trims tokens on **every prompt**, in the background. No config, nothing to remember. Don't have an account yet? [Create one](https://tokenade.net/signup) — it's free (10M tokens/month, no credit card).
 
 ---
 
@@ -84,13 +85,13 @@ The `postinstall` step downloads the prebuilt binary for your platform from the 
 
 **Supported:** Linux · macOS · Windows · x64 & arm64 · Node ≥ 18.
 
-## 🔓 Connect your account (optional — browser, no key to type)
+## 🔓 Connect your account (required — browser, no key to type)
 
 ```sh
 tokenade login      # opens tokenade.net so you (logged into your dashboard) approve this device
 ```
 
-You don't need an account to start: the trial runs on an anonymous machine id. Logging in links the machine to your dashboard and your plan's quota.
+Tokenade needs a free account. `tokenade login` links this machine to your dashboard and your plan's quota. No account yet? [Create one](https://tokenade.net/signup) — it's free.
 
 **Free** and **Pro** include **unlimited machines**; **Enterprise** is sized to your fleet. Manage machines anytime at [tokenade.net/dashboard](https://tokenade.net/dashboard).
 
