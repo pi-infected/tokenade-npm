@@ -79,6 +79,7 @@ Your coding agent burns tokens on things the model never needed to see — whole
 
 ```sh
 npm install -g @tokenade/cli
+tokenade install
 ```
 
 The `postinstall` step downloads the prebuilt binary for your platform from the **signed release manifest** (`downloads.tokenade.net/manifest.json`) and verifies its **SHA‑256**. Nothing is run blindly — and the launcher in [`bin/tokenade.js`](bin/tokenade.js) and the installer in [`install.js`](install.js) are right here in this repo for you to inspect.
