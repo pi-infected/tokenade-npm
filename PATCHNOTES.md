@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.3
+
+- Fixed a rare slowdown on long or resumed sessions that could make Claude Code report a hook timeout — prompts stay responsive again.
+- Tokenade no longer piles up settings backups in your Claude config folder; older copies are tidied away automatically, leaving just the most recent.
+
 ## 0.9.2
 
 - More of your coding agents now get the full treatment: command output is compacted across more of the supported tools, on every platform.
