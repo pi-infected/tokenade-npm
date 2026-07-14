@@ -62,18 +62,56 @@ Your coding agent burns tokens on things the model never needed to see — whole
 
 ## ✨ What it does
 
+*Less tokens, same results — automatically, on every prompt.*
+
 | | Feature | What you get |
 |---|---|---|
-| 🔎 | **Semantic code search** | Finds the right files by *meaning*, so your agent reads only what matters — not your whole project. |
-| 🧹 | **Command optimization** | Trims long command outputs (logs, builds, tests) down to what counts before your agent ever sees them. |
-| 🧩 | **MCP optimization** | Loads only the MCP tools your agent actually needs, on demand — instead of every tool, every time. |
-| 📊 | **Token dashboard** | See exactly how many tokens Tokenade saved you — clear numbers, no guesswork. |
-| 🛟 | **Free to start** | Save up to **10M tokens/month** on the free plan — unlimited machines, no credit card. |
-| ⚙️ | **One-command install** | Ready in seconds. Connects to your agent automatically, with zero configuration. |
+| 🧹 | **Command compaction** | Builds, tests, logs, MCP tool results — every noisy output your agent triggers is trimmed to what actually matters before the model reads a line. Failures, numbers and the decisive lines always survive, so your agent never re-runs a command to recover them. |
+| 🧩 | **MCP optimization** | One command wraps every MCP server you use behind Tokenade's proxy: verbose JSON is compacted in transit, tool manifests are stripped to their callable skeleton, and tools that can't run on your machine aren't even advertised to the agent. |
+| 🌐 | **Web search** | Replaces your agent's built-in web search with Tokenade's engine — same answers as compact result lists instead of walls of text, cheaper on every search, with automatic fallback to the native tool if one ever fails. |
+| 🔎 | **Code search** | Tokenade indexes and parses your project, then hands your agent real code-intelligence: semantic search by meaning, `map` for structure, `query` to jump to a symbol, `skeleton` for signatures, `impact` for dependents — so it stops reading whole files to find one thing. |
+| ✂️ | **Lean output** | Prompts your model to drop pleasantries, recaps and filler while keeping every technical detail. Output tokens are the most expensive, so terser answers cut your bill directly. |
+| 🪟 | **Context optimization** | Tokenade knows when your prompt cache expires and compacts old context before it's re-billed as fresh input. Stale results on resume are masked (recoverable on demand), and independent commands are batched into a single turn. |
+| ♻️ | **Read deduplication** | Instead of re-serving identical bytes, Tokenade sends back a tiny reference — or just the diff when content changed. Works everywhere: file reads, command outputs, tool results. |
+| 🔒 | **Privacy** | Local-first: no code, prompts or file paths ever reach our servers — only aggregate counters (tokens saved, and by which feature). Your full detailed stats live in exactly one place: your machine. GDPR compliant. |
+| 🛡️ | **Security** | Redacts secrets before they're ever sent to your AI model — cookies & session tokens, credentials, PEM & crypto keys, 94 provider token formats, checksum-validated card numbers. What your agent reads locally, the model's provider never sees. |
 
 ## 🤝 Works with the agents you already use
 
-**Claude Code** · **Cursor** · **Codex** · **GitHub Copilot** · **Gemini CLI** · **Qwen Code** · **Windsurf** · **Cline** · **Kilo Code** · **OpenCode** · **Aider** · **Hermes** · **OpenClaw** · **Antigravity** · **Grok**
+Every agent gets Tokenade's prompt- and CLI-level features — **code search**, **lean output**, **context optimization**, and **privacy** (fully local — your code never leaves your machine). What varies is how much of the agent's **tool output** Tokenade can reach (command output, web results, MCP tool outputs, file reads) — which drives **command compaction**, **web search** folding, **MCP optimization**, **re-read dedup**, and **security** (automatic secret redaction, which needs both command and file-read coverage).
+
+**Legend:** ✅ full · ◐ partial · — not available
+
+| Agent | Command compaction | Web search | MCP optimization | Code search | Lean output | Context opt.¹ | Re-read dedup | Privacy | Security² |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Claude Code CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **OpenCode** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Kilo Code** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Copilot CLI**³ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Hermes** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Cline** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Gemini CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **T3 Code**⁴ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **OpenClaw** | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Pi** | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Qwen Code** | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Codex CLI** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Cursor** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Grok** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Droid** | ✅ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Aider** | ◐ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Windsurf**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
+| **Antigravity**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
+
+<sub>¹ Batching and lean-output savings apply everywhere; prompt-cache trimming is available on Claude Code today. ² Automatic secret redaction requires both command and file-read coverage. ³ Copilot **CLI** — the VS Code Copilot extension is not covered. ⁴ Inherits full coverage from the Claude Code it runs on. ⁵ MCP-based integration: Tokenade compacts MCP tool outputs; the agent's native command/read/web tools aren't reachable.</sub>
+
+### Command-line vs. desktop editions
+
+The table above is for each tool's **command-line edition** — that's where Tokenade attaches (hooks, config, shell). A product's **desktop or IDE app is a separate integration** and is **not** covered by its CLI row:
+
+- **Desktop / IDE apps that speak MCP** (e.g. **Claude Desktop**): only **MCP optimization** applies — command, web, file-read compaction and security are not available, because a GUI exposes no command or read hooks. *(Per-app desktop coverage is still being verified — don't assume parity with the CLI.)*
+- **Claude Cowork** (the autonomous desktop mode): **not supported**.
+- **Editions are not interchangeable:** **Codex CLI** (full, above) ≠ a Codex desktop app; **Claude Code** (CLI, full) ≠ **Claude Desktop** (MCP only) ≠ **Cowork** (unsupported). The same holds for any other product shipping both a CLI and a desktop/IDE build.
 
 ## 📦 Install
 
