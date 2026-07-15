@@ -1,6 +1,6 @@
 {
   "name": "@tokenade/cli",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Tokenade — cut your AI coding agent's token bill. Installs the Tokenade CLI (a local, paid token-reduction tool; activate via your browser).",
   "homepage": "https://tokenade.net",
   "license": "UNLICENSED",
@@ -15,12 +15,12 @@
     "tar": "^7.5.16"
   },
   "optionalDependencies": {
-    "@tokenade/cli-linux-x64": "0.9.3",
-    "@tokenade/cli-linux-x64-musl": "0.9.3",
-    "@tokenade/cli-linux-arm64-musl": "0.9.3",
-    "@tokenade/cli-darwin-arm64": "0.9.3",
-    "@tokenade/cli-darwin-x64": "0.9.3",
-    "@tokenade/cli-win32-x64": "0.9.3"
+    "@tokenade/cli-linux-x64": "0.9.4",
+    "@tokenade/cli-linux-x64-musl": "0.9.4",
+    "@tokenade/cli-linux-arm64-musl": "0.9.4",
+    "@tokenade/cli-darwin-arm64": "0.9.4",
+    "@tokenade/cli-darwin-x64": "0.9.4",
+    "@tokenade/cli-win32-x64": "0.9.4"
   },
   "files": [
     "bin/",

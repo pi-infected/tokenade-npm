@@ -99,11 +99,11 @@ Every agent gets Tokenade's prompt- and CLI-level features — **code search**, 
 | **Cursor** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
 | **Grok** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
 | **Droid** | ✅ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Aider** | ◐ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
+| **Aider** | ◐⁶ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
 | **Windsurf**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
 | **Antigravity**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
 
-<sub>¹ Batching and lean-output savings apply everywhere; prompt-cache trimming is available on Claude Code today. ² Automatic secret redaction requires both command and file-read coverage. ³ Copilot **CLI** — the VS Code Copilot extension is not covered. ⁴ Inherits full coverage from the Claude Code it runs on. ⁵ MCP-based integration: Tokenade compacts MCP tool outputs; the agent's native command/read/web tools aren't reachable.</sub>
+<sub>¹ Batching and lean-output savings apply everywhere; prompt-cache trimming is available on Claude Code today. ² Automatic secret redaction requires both command and file-read coverage. ³ Copilot **CLI** — the VS Code Copilot extension is not covered. ⁴ Inherits full coverage from the Claude Code it runs on. ⁵ MCP-based integration: Tokenade compacts MCP tool outputs; the agent's native command/read/web tools aren't reachable. ⁶ **Aider** is wrap-only: command compaction is not automatic — run commands through `tokenade wrap …`, or enable the opt-in PATH shim with `tokenade install --shim`.</sub>
 
 ### Command-line vs. desktop editions
 

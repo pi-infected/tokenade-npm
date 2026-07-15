@@ -38,6 +38,71 @@ const DOWNLOADS_BASE =
 const MANIFEST_URL = `${DOWNLOADS_BASE}/manifest.json`;
 const VENDOR = path.join(__dirname, "vendor");
 
+// Leading-byte format sniff. SHA-256 proves the bytes match what the manifest
+// served — NOT that they are an executable for THIS OS. Catches a truncated
+// download, an HTML error page, a gzip/tar that never extracted, or a
+// wrong-OS binary before we even try to exec it.
+function looksLikeExecutable(head, platform) {
+	if (head[0] === 0x23 && head[1] === 0x21) return false; // "#!" script/text
+	if (head[0] === 0x3c) return false; // "<" HTML/XML error page
+	if (head[0] === 0x1f && head[1] === 0x8b) return false; // gzip (unextracted)
+	if (platform === "win32") return head[0] === 0x4d && head[1] === 0x5a; // "MZ" PE
+	if (platform === "darwin") {
+		const m = head.readUInt32BE(0);
+		// Mach-O thin (feedface/feedfacf + byte-swapped) or fat/universal.
+		return (
+			m === 0xfeedface || m === 0xfeedfacf ||
+			m === 0xcefaedfe || m === 0xcffaedfe ||
+			m === 0xcafebabe || m === 0xcafebabf
+		);
+	}
+	// linux / other unix → ELF ("\x7fELF")
+	return head[0] === 0x7f && head[1] === 0x45 && head[2] === 0x4c && head[3] === 0x46;
+}
+
+// Assert `binPath` is a runnable tokenade binary on THIS machine, or throw a
+// clear, actionable error. Two gates: (1) the format sniff above, (2) a
+// `--version` spawn probe — a wrong-arch Mach-O has valid magic but ENOEXECs
+// when exec'd (no Rosetta), surfacing as a spawn `error`. Mirrors the Rust
+// updater's pre-swap health probe: SHA/signature prove transfer, this proves
+// it RUNS. Refusing loudly here beats leaving an ENOEXEC binary that bricks
+// every later shimmed `node`/hook call (os error 35 fork-bomb, etc.).
+function assertRunnable(binPath, label) {
+	if (!fs.existsSync(binPath)) {
+		throw new Error(`${label}: binary missing at ${binPath}`);
+	}
+	const fd = fs.openSync(binPath, "r");
+	const head = Buffer.alloc(8);
+	let read = 0;
+	try {
+		read = fs.readSync(fd, head, 0, 8, 0);
+	} finally {
+		fs.closeSync(fd);
+	}
+	if (read < 4) throw new Error(`${label}: binary truncated (${read} bytes)`);
+	if (!looksLikeExecutable(head, process.platform)) {
+		const hex = head.slice(0, 4).toString("hex");
+		throw new Error(
+			`${label}: not a ${process.platform} executable (leading bytes 0x${hex}) — corrupt or wrong-arch download`,
+		);
+	}
+	const { spawnSync } = require("node:child_process");
+	const r = spawnSync(binPath, ["--version"], { stdio: "ignore", timeout: 15000 });
+	if (r.error) {
+		throw new Error(
+			`${label}: does not execute on ${process.platform}/${process.arch} (${r.error.code || r.error.message}) — wrong architecture or corrupt`,
+		);
+	}
+	if (r.signal) {
+		throw new Error(`${label}: killed by ${r.signal} on startup — unsigned or corrupt`);
+	}
+	// It exec'd (the thing we care about). A non-zero `--version` is unexpected
+	// but not proof of a broken binary, so warn rather than fail the install.
+	if (typeof r.status === "number" && r.status !== 0) {
+		console.error(`  warn: ${label}: \`--version\` exited ${r.status}`);
+	}
+}
+
 // Per-request wall clock. A download that stalls past this is treated as a
 // network error and retried, rather than hanging the whole `npm install`.
 const REQUEST_TIMEOUT_MS = Number(process.env.TOKENADE_HTTP_TIMEOUT_MS) || 30000;
@@ -227,18 +292,35 @@ async function main() {
 	// BEFORE any network call, so an unreachable downloads.tokenade.net (blocked
 	// corporate proxy, offline sandbox) can never fail an install whose binary
 	// the registry already delivered.
+	let platPkgDir = null;
 	try {
-		require.resolve(`${platformPackageName(target)}/package.json`);
+		platPkgDir = path.dirname(
+			require.resolve(`${platformPackageName(target)}/package.json`),
+		);
+	} catch {
+		// optional dep absent (skipped or no registry build) — try ./vendor.
+	}
+	if (platPkgDir) {
+		// The launcher prefers the platform package over ./vendor, so a broken
+		// one can't be healed by a later download — validate it RUNS here and
+		// fail loudly if not. Throw propagates to main().catch (msg + exit 1).
+		assertRunnable(path.join(platPkgDir, binaryName()), platformPackageName(target));
 		console.log(
 			`✓ tokenade provided by ${platformPackageName(target)} (${target}) — no download needed.`,
 		);
 		return;
-	} catch {
-		// optional dep absent (skipped or no registry build) — try ./vendor.
 	}
 	if (fs.existsSync(path.join(VENDOR, binaryName()))) {
-		console.log(`✓ tokenade already vendored (${target}) — no download needed.`);
-		return;
+		try {
+			assertRunnable(path.join(VENDOR, binaryName()), "vendored tokenade");
+			console.log(`✓ tokenade already vendored (${target}) — no download needed.`);
+			return;
+		} catch (e) {
+			// A previous run left a broken vendor binary (the 0.5.1 ENOEXEC field
+			// bug). Drop it and re-download rather than trusting it.
+			console.error(`  vendored binary unusable (${e.message}); re-downloading.`);
+			fs.rmSync(VENDOR, { recursive: true, force: true });
+		}
 	}
 
 	const manifest = await fetchJson(MANIFEST_URL);
@@ -314,6 +396,12 @@ async function main() {
 				q("/usr/bin/codesign", ["--force", "--sign", "-", f]);
 		}
 	}
+
+	// Final gate: the freshly downloaded binary must RUN here. SHA-256 matched
+	// whatever the manifest served — a wrong-arch or truncated build passes that
+	// yet ENOEXECs at runtime, bricking every later shimmed `node`/hook call.
+	// Mirrors the Rust updater's pre-swap `--version` probe. Throw → loud fail.
+	assertRunnable(path.join(VENDOR, binaryName()), `tokenade ${manifest.version}`);
 
 	console.log(`✓ tokenade ${manifest.version} installed (${target})`);
 	console.log("  Next: run `tokenade install` — that's it, savings start immediately.");

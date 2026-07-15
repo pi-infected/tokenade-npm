@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.4
+
+- Safer installs and upgrades: a stronger integrity check means a corrupted or mismatched download can never leave you with a broken setup, and updating now tidies away leftovers from older versions automatically.
+- More accurate, less confusing usage reporting.
+
 ## 0.9.3
 
 - Fixed a rare slowdown on long or resumed sessions that could make Claude Code report a hook timeout — prompts stay responsive again.
