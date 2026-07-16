@@ -10,6 +10,13 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.5
+
+- Tokenade no longer touches your `PATH` or your shell aliases at all. Updating removes anything earlier versions put there, and repairs shell startup files a previous cleanup could leave in a broken state — a fix worth updating for even if you never noticed a problem.
+- Uninstalling and updating are now crash-safe: an interruption can no longer leave a shell profile or an agent's settings file half-written.
+- Disk hygiene now actually runs on its own schedule, so caches stay within their intended budget instead of growing quietly, and the project you're working on is never evicted.
+- Reliability fixes for unusual environments (CI runners, service accounts, sandboxes) where tokenade could previously misidentify your home directory.
+
 ## 0.9.4
 
 - Safer installs and upgrades: a stronger integrity check means a corrupted or mismatched download can never leave you with a broken setup, and updating now tidies away leftovers from older versions automatically.
