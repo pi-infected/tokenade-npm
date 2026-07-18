@@ -73,6 +73,7 @@ Your coding agent burns tokens on things the model never needed to see — whole
 | ✂️ | **Lean output** | Prompts your model to drop pleasantries, recaps and filler while keeping every technical detail. Output tokens are the most expensive, so terser answers cut your bill directly.<br>**−30%** output tokens (vs Caveman's −19%) — long sessions >200k tokens, THOL benchmark. |
 | 🪟 | **Context optimization** | Tokenade knows when your prompt cache expires and compacts old context before it's re-billed as fresh input. Stale results on resume are masked (recoverable on demand), and independent commands are batched into a single turn.<br>**−30%** cache prefix (compaction fires before expiry re-billing) · **1** turn instead of several via batching. |
 | ♻️ | **Read deduplication** | Instead of re-serving identical bytes, Tokenade sends back a tiny reference — or just the diff when content changed. Works everywhere: file reads, command outputs, tool results.<br>**−95%** on a command run a second time · **−81%** on a file re-read identically. |
+| 📄 | **Documents & media** | Point your agent at a PDF spec, a spreadsheet of results or a recorded meeting and it stalls — those bytes aren't text. Tokenade extracts them, so your agent reads **and searches inside** 100+ formats like any other file: Office, OpenDocument, EPUB, images, audio and video. Images are downscaled and converted to something your agent can actually display; audio and video come back as metadata plus a transcript.<br>**−54%** tokens on a PDF read (vs Claude Code's built-in reader) · **100+** formats · every supported agent, nothing to configure. |
 | 🔒 | **Privacy** | Local-first: no code, prompts or file paths ever reach our servers — only aggregate counters (tokens saved, and by which feature). Your full detailed stats live in exactly one place: your machine. **GDPR compliant.** |
 | 🛡️ | **Security** | Redacts secrets before they're ever sent to your AI model — cookies & session tokens, credentials, PEM & crypto keys, **94 provider token formats** (AWS, GitHub, Stripe, OpenAI…), checksum-validated card numbers. What your agent reads locally, the model's provider never sees. |
 
@@ -221,6 +222,35 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 | **Build / VCS / infra** | `diff` · `gitlog` · `archive` · `cargo-bench` · `jvmbuild` (aliases `mvn`/`gradle`/`sbt`) · `pkginstall` · `terraform` · `ansible` · `k8s-manifest` · `describe` · `systemd` |
 | **System & network** | `table` · `disk` · `netstat` · `dns` · `vmstat` · `filelist` · `grep` |
 | **Web & docs** | `web` · `serp` (aliases `google`/`bing`/`ddg`) · `snapshot` · `stealth` · `curl` · `docs` · `pdf` · `notebook` |
+
+### Documents & media — the formats `read` understands
+
+`read` also covers the binary formats an agent normally can't open at all. Point it at one and you get extracted text your agent can search, not a wall of bytes — **−54%** tokens on a PDF versus Claude Code's built-in reader. Files with a wrong or missing extension are detected by their magic bytes.
+
+**Documents → extracted text**
+
+| Family | Extensions |
+|---|---|
+| **PDF** | `.pdf` |
+| **Word** (OOXML, incl. macro & template variants) | `.docx` `.docm` `.dotx` `.dotm` |
+| **Excel** (OOXML) | `.xlsx` `.xltx` `.xltm` |
+| **PowerPoint** (OOXML) | `.pptx` `.pptm` `.potx` `.potm` `.ppsx` `.ppsm` |
+| **Excel legacy** (OLE2/BIFF, via `calamine`, pure Rust) | `.xls` `.xlsb` `.xlsm` |
+| **OpenDocument** (+ templates + Draw) | `.odt` `.ott` · `.ods` `.ots` · `.odp` `.otp` · `.odg` `.otg` |
+| **Flat ODF** (single XML, no zip) | `.fodt` `.fods` `.fodp` `.fodg` |
+| **No container** | `.rtf` (in-house extractor) · `.fb2` (FictionBook) |
+| **Ebook** | `.epub` |
+
+**Images → downscaled to 1024 px, auto-converted to PNG** for any format the calling agent can't display itself (17 extensions)
+
+`.png` `.jpg` `.jpeg` `.gif` `.webp` `.bmp` `.tif` `.tiff` `.ico` `.tga` `.pnm` `.pbm` `.pgm` `.ppm` `.qoi` `.hdr` `.ff`
+
+**Audio & video → metadata + transcript** (65 extensions). Transcript comes from embedded or sidecar subtitles (`.srt`/`.vtt`), falling back to a local Whisper if you have one installed.
+
+| | Extensions |
+|---|---|
+| **Audio** | `mp3` `wav` `wave` `ogg` `oga` `flac` `m4a` `m4b` `aac` `opus` `amr` `aiff` `aif` `aifc` `wma` `alac` `ape` `wv` `mpc` `ac3` `au` `snd` `ra` `caf` `spx` `voc` `gsm` `dsf` `dff` `mka` `weba` `3ga` `mp2` `mpga` |
+| **Video** | `mp4` `webm` `mkv` `mov` `avi` `flv` `wmv` `m4v` `mpg` `mpeg` `mpe` `3gp` `3g2` `mts` `m2ts` `m2v` `mxf` `ogv` `asf` `rm` `rmvb` `vob` `divx` `f4v` `swf` `y4m` `qt` `dv` `amv` `roq` `nsv` |
 
 ### Savings, receipts & reporting
 
