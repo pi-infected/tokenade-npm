@@ -10,6 +10,25 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.7
+
+- Tokenade now reads far more of the web. Pages that used to come back empty, truncated, or as a wall of scaffolding — documentation and knowledge bases, code-hosting and collaboration sites, model and dataset hubs, feeds, shop product pages — read properly, at a fraction of what the raw page would cost.
+- Many sites that refused tokenade outright now answer normally.
+- When a page genuinely has no readable content, tokenade tells you instead of quietly handing back nothing.
+- A page that failed once is retried later in the session rather than staying broken until you restart.
+- More accurate savings reporting for web reading. Some earlier figures were overstated; the numbers you see now are the honest ones.
+- Lower memory use, and reliability fixes across the web path — including pages in non-Western languages, unusual or malformed pages, and several cases where a page could appear to be read successfully while returning nothing useful.
+- Piping tokenade's output into another command no longer prints an error when that command stops reading early.
+
+## 0.9.6
+
+- Tokenade now reads far more of what you actually have on disk: many more document types (including older Office files and several formats that previously came back unreadable), a much wider range of image formats, and audio and video files. Reading any of them costs a fraction of what it used to.
+- Ask a document a question and get just the parts that answer it — and you can ask several questions in one go.
+- Media files no longer flood your session: they now cost a small, predictable amount instead of an enormous one.
+- More accurate savings reporting. Some earlier figures were overstated; the numbers you see now are the honest ones.
+- Reliability fixes across document, image and media handling, including files in non-Western languages, damaged or unusual files, and several cases where a file could appear to be read successfully while returning nothing useful.
+- Caches created while reading media are now cleaned up on schedule instead of growing quietly.
+
 ## 0.9.5
 
 - Tokenade no longer touches your `PATH` or your shell aliases at all. Updating removes anything earlier versions put there, and repairs shell startup files a previous cleanup could leave in a broken state — a fix worth updating for even if you never noticed a problem.
