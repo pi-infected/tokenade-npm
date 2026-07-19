@@ -10,6 +10,10 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.8
+
+- Tokenade now ships its full licence terms, and the package declares them properly. No functional changes — this release behaves exactly like 0.9.7.
+
 ## 0.9.7
 
 - Tokenade now reads far more of the web. Pages that used to come back empty, truncated, or as a wall of scaffolding — documentation and knowledge bases, code-hosting and collaboration sites, model and dataset hubs, feeds, shop product pages — read properly, at a fraction of what the raw page would cost.
