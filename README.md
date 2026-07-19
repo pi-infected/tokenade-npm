@@ -34,25 +34,27 @@ That's it — Tokenade is **free**, you just need a free account. After `tokenad
 
 ## Benchmark — Token-Harness Optimizer Leaderboard
 
-Mean cost reduction on long sessions (> 200k tokens), real end-to-end Claude Code runs:
+Mean cost reduction on long sessions (> 200k tokens), real end-to-end Claude Code runs — model `claude-sonnet-4-6`, Claude Code `2.1.206`, 7 long tasks x 10 runs each. Higher % = cheaper.
 
 | # | Optimizer | mean cost reduction | adoption | input tokens | output tokens | cache tokens |
 |---|-----------|--------------------:|----------|-------------:|--------------:|-------------:|
-| 1 | tokenade 0.7.3 | +26.70% | 25/60 | 16.21k | 3.74k | 232.71k |
-| 2 | caveman v1.9.0 | +12.00% | N/A | 18.90k | 4.59k | 268.02k |
-| 3 | claude-token-efficient b32fa8b | +1.80% | N/A | 20.30k | 5.64k | 329.71k |
-| 4 | code-review-graph 2.3.6 | +0.00%\* | 0/54 | 21.03k | 6.05k | 331.07k |
-| 5 | graphify 0.8.49 | +0.00%\* | 0/60 | 18.91k | 5.53k | 293.90k |
-| 6 | lean-ctx 3.8.4 | +0.00%\* | 0/54 | 19.60k | 5.09k | 317.41k |
-| 7 | serena v1.5.3 | +0.00%\* | 0/54 | 21.07k | 6.25k | 324.87k |
-| 8 | control baseline | +0.00% | — | 21.12k | 5.76k | 347.01k |
-| 9 | squeez 1.22.1 | −0.60% | 1/54 | 20.33k | 5.58k | 388.05k |
-| 10 | codegraph 0.9.9 | −2.00% | 1/54 | 20.85k | 5.64k | 340.65k |
-| 11 | ponytail main | −5.40% | N/A | 21.87k | 6.14k | 340.07k |
-| 12 | rtk v0.42.3 | −10.80% | N/A | 24.11k | 7.60k | 368.46k |
-| 13 | headroom 0.27.0 | −17.50% | N/A | 32.43k | 4.89k | 324.68k |
+| 1 | tokenade 0.8.13 | +38.9% | 5/70 | 32.90k | 8.10k | 368.85k |
+| 2 | edgee v0.2.13 | +14.7% | N/A | N/A | N/A | N/A |
+| 3 | caveman v1.9.0 | +13.6% | N/A | 31.56k | 8.15k | 438.88k |
+| 4 | claude-token-efficient b32fa8b | +11.6% | N/A | 32.96k | 9.58k | 444.95k |
+| 5 | code-review-graph 2.3.6 | +8.5%\* | 0/70 | 34.51k | 10.13k | 459.80k |
+| 6 | codegraph 0.9.9 | +7.6% | 4/70 | 35.31k | 10.28k | 442.70k |
+| 7 | squeez 1.22.1 | +6.9% | N/A | 31.33k | 8.63k | 512.53k |
+| 8 | ponytail main | +3.5% | N/A | 34.65k | 9.65k | 488.47k |
+| 9 | graphify 0.8.49 | +3.3%\* | 0/70 | 35.08k | 10.27k | 489.27k |
+| 10 | control baseline | +0.0% | — | 34.53k | 11.08k | 471.81k |
+| 11 | rtk v0.42.3 | −7.1% | N/A | 35.57k | 12.30k | 542.74k |
+| 12 | lean-ctx 3.8.4 | −10.3% | 60/70 | 35.69k | 10.94k | 611.41k |
+| 13 | headroom 0.27.0 | −52.8% | N/A | 244.49k | 11.57k | 471.05k |
 
-\* Opt-in tool the agent never chose to use across its runs — scored at the control baseline.
+Every figure is a mean, except **adoption** — a count of the runs (out of the total) in which the agent actually called the tool. Rows a few points apart are close enough that run-to-run variation can account for the gap.
+
+\* Zero adoption this campaign — the agent never called this tool's MCP/skill. The figure is its measured end-to-end effect (standing overhead re-billed every turn, plus noise), not its capability when used.
 
 ## Why Tokenade
 
