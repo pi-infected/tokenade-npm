@@ -3,7 +3,7 @@
   "version": "0.9.7",
   "description": "Tokenade — cut your AI coding agent's token bill. Installs the Tokenade CLI (a local, paid token-reduction tool; activate via your browser).",
   "homepage": "https://tokenade.net",
-  "license": "UNLICENSED",
+  "license": "SEE LICENSE IN LICENSE",
   "bin": {
     "tokenade": "bin/tokenade.js"
   },
