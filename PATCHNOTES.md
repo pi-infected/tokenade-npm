@@ -10,6 +10,14 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.9.9
+
+- Reading a web page is roughly twice as fast, and pages that used to be the slow ones are no longer slow. Nothing about what you get back changed — the same page reads the same, it just arrives sooner.
+- Pages that browsers render fine but that used to come back mangled — unusual or malformed markup, complex tables, merged cells — now read correctly.
+- Video content linked inside a page is surfaced instead of silently dropped.
+- Documents with merged table cells keep their columns lined up.
+- Fixes for two rare cases where part of a page could go missing without any sign that it had.
+
 ## 0.9.8
 
 - Tokenade now ships its full licence terms, and the package declares them properly. No functional changes — this release behaves exactly like 0.9.7.
