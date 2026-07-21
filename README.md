@@ -223,7 +223,7 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 | **Logs & traces** | `logs` · `access` · `journal` · `container-logs` · `ghactions` · `stack` · `strace` · `tcpdump` · `metrics` |
 | **Build / VCS / infra** | `diff` · `gitlog` · `archive` · `cargo-bench` · `jvmbuild` (aliases `mvn`/`gradle`/`sbt`) · `pkginstall` · `terraform` · `ansible` · `k8s-manifest` · `describe` · `systemd` |
 | **System & network** | `table` · `disk` · `netstat` · `dns` · `vmstat` · `filelist` · `grep` |
-| **Web & docs** | `web` · `serp` (aliases `google`/`bing`/`ddg`) · `snapshot` · `stealth` · `curl` · `docs` · `pdf` · `notebook` |
+| **Web & docs** | `search` · `web` · `serp` (aliases `google`/`bing`/`ddg`) · `snapshot` · `stealth` · `curl` · `docs` · `pdf` · `notebook` |
 
 ### Documents & media — the formats `read` understands
 
@@ -253,6 +253,23 @@ When reporting, please include your OS, `tokenade --version`, your coding agent,
 |---|---|
 | **Audio** | `mp3` `wav` `wave` `ogg` `oga` `flac` `m4a` `m4b` `aac` `opus` `amr` `aiff` `aif` `aifc` `wma` `alac` `ape` `wv` `mpc` `ac3` `au` `snd` `ra` `caf` `spx` `voc` `gsm` `dsf` `dff` `mka` `weba` `3ga` `mp2` `mpga` |
 | **Video** | `mp4` `webm` `mkv` `mov` `avi` `flv` `wmv` `m4v` `mpg` `mpeg` `mpe` `3gp` `3g2` `mts` `m2ts` `m2v` `mxf` `ogv` `asf` `rm` `rmvb` `vob` `divx` `f4v` `swf` `y4m` `qt` `dv` `amv` `roq` `nsv` |
+
+### Reading the web
+
+**`search "<query>"`** — one compact, ranked list of results instead of a wall of page text. Pass several queries to run them together.
+```text
+$ tokenade search "rust async runtime comparison"
+1. Choosing an async runtime — https://…
+2. Tokio vs smol: what actually differs — https://…
+3. …
+```
+
+**`web <url>`** — read a page as clean text, at a fraction of what the raw page would cost.
+```text
+$ tokenade web https://example.com/docs/getting-started
+# Getting started
+…
+```
 
 ### Savings, receipts & reporting
 
