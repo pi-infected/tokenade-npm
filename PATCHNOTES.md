@@ -10,6 +10,18 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 0.10.0
+
+- More of the web comes back whole. Text that used to stop partway through a sentence now arrives complete, and pages that stated their own heading twice state it once.
+- Documents that were already plain or already formatted keep the shape they came in, instead of being reflowed into one undifferentiated block.
+- Documents laid out in columns are read in the order a person reads them, so sentences no longer interleave and words are no longer welded together out of two of them.
+- Tables are reported only where a document genuinely has one.
+- Long documents split for search stay readable in the middle, not just at the top.
+- Pages built with extreme nesting, which could previously occupy a request far longer than any page should, now return promptly.
+- Sites that turn automated readers away are identified more accurately, and are never attributed to the wrong provider.
+- Wider coverage of file types and written languages when preparing documents for search.
+- Anything an earlier version left on your `PATH` now says so plainly rather than quietly standing in for a command; updating clears it.
+
 ## 0.9.9
 
 - Reading a web page is roughly twice as fast, and pages that used to be the slow ones are no longer slow. Nothing about what you get back changed — the same page reads the same, it just arrives sooner.
