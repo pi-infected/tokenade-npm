@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 1.0.1
+
+- Tokenade now ships a native build for Windows on ARM (ARM64) machines.
+- Results from your MCP tools' searches and lookups come back in full more often, instead of being set aside for you to fetch separately.
+
 ## 0.10.0
 
 - More of the web comes back whole. Text that used to stop partway through a sentence now arrives complete, and pages that stated their own heading twice state it once.

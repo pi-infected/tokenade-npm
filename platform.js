@@ -59,12 +59,13 @@ function rustTarget() {
 			? "x86_64-unknown-linux-musl"
 			: "x86_64-unknown-linux-gnu";
 	}
-	if (p === "win32") return "x86_64-pc-windows-gnu";
+	if (p === "win32")
+		return a === "arm64" ? "aarch64-pc-windows-gnullvm" : "x86_64-pc-windows-gnu";
 	throw new Error(`unsupported platform: ${p}/${a}`);
 }
 
 // Rust target dir (in dist/) → the npm sub-package that carries its binary.
-// Kept in lockstep with the six packages the release script publishes and the
+// Kept in lockstep with the seven packages the release script publishes and the
 // optionalDependencies in package.json — one source of truth for the mapping.
 const PACKAGE_BY_TARGET = {
 	"x86_64-unknown-linux-gnu": "@tokenade/cli-linux-x64",
@@ -73,6 +74,7 @@ const PACKAGE_BY_TARGET = {
 	"aarch64-apple-darwin": "@tokenade/cli-darwin-arm64",
 	"x86_64-apple-darwin": "@tokenade/cli-darwin-x64",
 	"x86_64-pc-windows-gnu": "@tokenade/cli-win32-x64",
+	"aarch64-pc-windows-gnullvm": "@tokenade/cli-win32-arm64",
 };
 
 // The per-platform sub-package name for the current host, or the given target.
