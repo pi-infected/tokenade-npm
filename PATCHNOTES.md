@@ -10,6 +10,12 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 1.1.0
+
+- Broader language coverage: work driven through PHP, Node, Deno and Ruby now comes back compacted for what it actually is, and their test runs report like every other test suite.
+- More of what a shell command prints is compacted instead of passed through at full price.
+- Windows: a command is recognised consistently however it is invoked, so it no longer misses the compaction its counterparts get on other platforms.
+
 ## 1.0.1
 
 - Tokenade now ships a native build for Windows on ARM (ARM64) machines.
