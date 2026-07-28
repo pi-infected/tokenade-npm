@@ -10,6 +10,11 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 1.1.1
+
+- Anything an earlier version left on your `PATH` is now cleared the moment it gets in the way, without you having to run anything. Commands your editor and agents depend on keep working, and when a restart is still needed you are told which app to restart.
+- Coming back after time away: signing in again takes effect straight away. A machine idle long enough to fall out of sync no longer stays paused after a sign-in that reported success.
+
 ## 1.1.0
 
 - Broader language coverage: work driven through PHP, Node, Deno and Ruby now comes back compacted for what it actually is, and their test runs report like every other test suite.
