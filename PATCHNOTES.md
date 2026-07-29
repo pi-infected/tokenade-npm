@@ -10,6 +10,13 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 1.1.2
+
+- A machine that was offline long enough to be paused now comes back on its own once the connection is back. Nothing to run, nothing to re-authorize.
+- If your machine is not signed in yet, the message you get says so and points at the one step that fixes it, instead of blaming the network.
+- The health report re-tests the connection while you watch, so its verdict is the current state of your machine, not an older one.
+- Leftovers from a much older version can no longer wedge the commands that clear them: the clean-up now happens and your command still runs.
+
 ## 1.1.1
 
 - Anything an earlier version left on your `PATH` is now cleared the moment it gets in the way, without you having to run anything. Commands your editor and agents depend on keep working, and when a restart is still needed you are told which app to restart.
