@@ -1,5 +1,17 @@
 # Tokenade — what's new
 
+## 1.1.4
+
+- The same search returns the same results every time. Two files of equal relevance could swap places between runs, which changed what you were actually shown.
+- A bug report no longer carries a private key. If a collected log or transcript held an SSH or PGP key, its body went into the archive in clear.
+- A secret at the very end of a very large command output is redacted like any other.
+- A command that failed keeps its output when you resume a session. The error that explains everything you did next is no longer dropped.
+- Stale file reads are recognised whether the path was written relative or absolute, and smaller ones are reclaimed too.
+- Searching files no longer buries you in `node_modules/`, `target/` and the like — and it tells you how many paths it left out and how to see them.
+- Asking for several skeletons at once: a file that no longer fits your budget shrinks to a one-line summary instead of disappearing.
+- A large spreadsheet reads as a column profile — types, ranges, how much is missing — instead of thousands of rows.
+- Environment variables are held to one list of what counts as a secret, so the same variable is treated the same way everywhere.
+
 <!-- Every release must add a `## <version>` section here; the release script
      refuses to publish without one. (Dev-level detail lives in CHANGELOG.md.)
 
