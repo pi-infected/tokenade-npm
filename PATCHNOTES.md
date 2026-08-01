@@ -10,6 +10,16 @@
      lever, nor any mechanism, threshold, technique, file name, or exact
      command/flag — a competitor must not be able to infer what's worth copying. -->
 
+## 1.1.3
+
+- The dollar amounts on your dashboard are the real price of each model you used. Every model in the current lineup was priced wrong, and the newest ones counted as nothing at all. Prices now stay current on their own, so a model released tomorrow is priced correctly too.
+- Your usage is no longer counted several times over. On Claude Code a single answer could be reported up to three times, inflating both your dashboard and your quota.
+- Bigger savings on web pages, short ones included.
+- A page that comes back as an error is reported as a failed fetch, instead of being passed on as though it were the content you asked for.
+- Antigravity is supported: its usage is counted along with every other agent.
+- Bigger savings in long sessions that keep coming back to the same files and commands.
+- Token counts are accurate on text that mixes Chinese, Japanese or Korean with Latin script.
+
 ## 1.1.2
 
 - A machine that was offline long enough to be paused now comes back on its own once the connection is back. Nothing to run, nothing to re-authorize.
