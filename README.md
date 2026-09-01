@@ -313,6 +313,8 @@ $ tokenade web https://example.com/docs/getting-started
 | `read-mode` | Show the active fold read-mode ladder (`TOKENADE_READ_MODE`). |
 | `unwrap-mcps` | Restore wrapped MCP servers to their original form (idempotent). |
 | `mcp-proxy <bin>` | Transparent JSON-RPC proxy in front of an MCP server (written by `install`; internal). |
+| `mcp-wrap <install\|uninstall\|report> [<server>]` | Route your configured MCP servers through the proxy so their tool results are folded too — no name means all of them. Rewrites the agent's MCP config atomically, after a timestamped `.bak`, and is fully reversible. |
+| `llm-proxy [install\|uninstall\|status\|autostart]` | Rank 4 of the ladder: a local proxy between an agent and its provider that folds tool results already in the history, and reads the provider's own usage on the way back. |
 | `--version` | Print the installed version. |
 
 > **User presets:** drop TOML files in `~/.config/tokenade/presets/` to add command-rewrite rules for your own CLIs (helm, ansible, internal scripts).
@@ -531,6 +533,30 @@ $ tokenade read-mode
   active: task (default)
   ladder: aggressive 0.4× · → task 1.0× · reference 3.0× · entropy
 ```
+
+**`mcp-wrap install`** — MCP tool results are the one channel hooks do not reach: no hook matcher matches `mcp__<server>__<tool>`. Wrapping the servers themselves covers it, once, for every tool they expose. Image results pass through untouched.
+```text
+$ tokenade mcp-wrap install
+  wrapped 2 server(s) — backup written beside each config
+    playwright   npx @playwright/mcp@latest  →  tokenade mcp-wrap -- npx …
+    sentry       uvx sentry-mcp              →  tokenade mcp-wrap -- uvx …
+$ tokenade mcp-wrap report
+  server      calls   before →  after   saved
+  playwright     41   184.2k →  21.7k   88%
+  sentry         12    38.9k →   6.1k   84%
+```
+`tokenade mcp-wrap uninstall` (or `--all`) puts every launch command back exactly as it was.
+
+**`llm-proxy install --agent <name>`** — the last rank of the ladder, for the results a hook never saw: the proxy folds tool results already sitting in the conversation on every later turn, and reads token usage from the provider's own response instead of estimating it. It holds your API key in memory and binds loopback only unless you pass `--remote`.
+```text
+$ tokenade llm-proxy install --agent codex --autostart
+  base URL → http://127.0.0.1:8787/v1
+  wrote ~/.config/systemd/user/tokenade-llm-proxy.service
+  confirmed by `systemctl --user is-active …`: it is serving
+$ tokenade llm-proxy status
+  listening 127.0.0.1:8787 · upstream https://api.openai.com/v1 · compaction ON
+```
+Nothing is enabled behind your back: `--autostart` writes the service definition and prints the commands, and `--enable` is you saying it out loud. `tokenade llm-proxy uninstall --agent <name>` restores the agent's own base URL.
 
 **`style <chat|coding|off>`** — inject a response-style preamble before each prompt. **`unwrap-mcps`** — restore wrapped MCP servers. **`--version`** — print the version.
 ```text
