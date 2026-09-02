@@ -81,40 +81,51 @@ Your coding agent burns tokens on things the model never needed to see — whole
 
 ## 🤝 Works with the agents you already use
 
-Every agent gets Tokenade's prompt- and CLI-level features — **code search**, **lean output**, **context optimization**, and **privacy** (fully local — your code never leaves your machine). What varies is how much of the agent's **tool output** Tokenade can reach (command output, web results, MCP tool outputs, file reads) — which drives **command compaction**, **web search** folding, **MCP optimization**, **re-read dedup**, and **security** (automatic secret redaction, which needs both command and file-read coverage).
+Every cell below is **measured, not claimed**. A bench gives each agent a disposable HOME, runs a real `tokenade install` for it, then exercises every feature through whatever channel that install produced — re-measured on **2026-09-01 across Linux, macOS and Windows** (24 agents × 23 probes). A cell shows the **worst** of the three platforms, never the best, so the table stays true wherever you are.
+
+Three columns are properties of the binary rather than of the agent, and measure ✅ on every agent without exception: **re-read dedup**, **privacy**, and **security** (secret redaction). What actually varies is how much of the agent's **tool output** Tokenade can reach — command output, web results, MCP responses, file reads and documents.
 
 **Legend:** ✅ full · ◐ partial · — not available
 
-| Agent | Command compaction | Web search | MCP optimization | Code search | Lean output | Context opt.¹ | Re-read dedup | Privacy | Security² |
-|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| **Claude Code CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **OpenCode** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Kilo Code** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Copilot CLI**³ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Hermes** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Cline** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Gemini CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **T3 Code**⁴ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **OpenClaw** | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Pi** | ✅ | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Qwen Code** | ✅ | — | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Codex CLI** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Cursor** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Grok** | ✅ | — | ✅ | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Droid** | ✅ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Aider** | ◐⁶ | — | — | ✅ | ✅ | ✅ | — | ✅ | — |
-| **Windsurf**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
-| **Antigravity**⁵ | — | — | ✅ | ✅ | ✅ | ◐ | — | ✅ | — |
+### Command-line agents
 
-<sub>¹ Batching and lean-output savings apply everywhere; prompt-cache trimming is available on Claude Code today. ² Automatic secret redaction requires both command and file-read coverage. ³ Copilot **CLI** — the VS Code Copilot extension is not covered. ⁴ Inherits full coverage from the Claude Code it runs on. ⁵ MCP-based integration: Tokenade compacts MCP tool outputs; the agent's native command/read/web tools aren't reachable. ⁶ **Aider** is wrap-only: command compaction is not automatic — run commands through `tokenade wrap …`, or enable the opt-in PATH shim with `tokenade install --shim`.</sub>
+| Agent | Command compaction | Web search | MCP optimization | Code search | Lean output | Context opt.¹ | Re-read dedup | Documents & media | Privacy | Security |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Claude Code CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Copilot CLI**² | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Cline** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Gemini CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **T3 Code**³ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Pi** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Qwen Code** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Codex CLI** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Grok** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Droid** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Reasonix** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **OpenCode** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **Kilo Code** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **Hermes** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **OpenClaw** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **Cursor** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **Antigravity** | ✅ | ✅ | ✅ | ✅ | ✅ | ◐ | ✅ | ✅ | ✅ | ✅ |
+| **Windsurf** | ◐ | ◐ | ✅ | ✅ | ✅ | ◐ | ✅ | ◐ | ✅ | ✅ |
+| **Aider**⁴ | ◐ | ◐ | ◐ | ✅ | ✅ | ◐ | ✅ | ◐ | ✅ | ✅ |
 
-### Command-line vs. desktop editions
+¹ Batching and lean output apply everywhere. Cache-expiry trimming is ◐ where the agent's bridge exposes no seam for it: the bench drove both — a message builder and a pre-request hook — and each declined, so nothing trims the context on its own there.
+² Copilot **CLI** — the VS Code extension is a separate integration, in the table below. ³ Inherits its coverage from the Claude Code it runs on.
+⁴ **Aider** is wrap-only: command compaction is not automatic — run commands through `tokenade wrap …`, or enable the opt-in PATH shim with `tokenade install --shim`. Its row is ◐ because **macOS** gives it no in-agent channel at all; on Linux and Windows its plugin path measures ✅ for command, web, MCP and documents.
 
-The table above is for each tool's **command-line edition** — that's where Tokenade attaches (hooks, config, shell). A product's **desktop or IDE app is a separate integration** and is **not** covered by its CLI row:
+### Desktop & IDE editions
 
-- **Desktop / IDE apps that speak MCP** (e.g. **Claude Desktop**): only **MCP optimization** applies — command, web, file-read compaction and security are not available, because a GUI exposes no command or read hooks. *(Per-app desktop coverage is still being verified — don't assume parity with the CLI.)*
-- **Claude Cowork** (the autonomous desktop mode): **not supported**.
-- **Editions are not interchangeable:** **Codex CLI** (full, above) ≠ a Codex desktop app; **Claude Code** (CLI, full) ≠ **Claude Desktop** (MCP only) ≠ **Cowork** (unsupported). The same holds for any other product shipping both a CLI and a desktop/IDE build.
+A product's desktop or IDE app is a **separate integration** and is never covered by its CLI row — **Codex CLI** ≠ **Codex (app)**, **Claude Code** ≠ **Claude Desktop** ≠ **Cowork**. Measured, none of them gets nothing: an app that speaks MCP gets MCP optimization, and the three binary-level columns land everywhere.
+
+| Agent | Command compaction | Web search | MCP optimization | Code search | Lean output | Context opt.¹ | Re-read dedup | Documents & media | Privacy | Security |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Copilot (VS Code)** | ◐ | ◐ | ✅ | ✅ | ✅ | ◐ | ✅ | ◐ | ✅ | ✅ |
+| **Devin Desktop** | ◐ | ◐ | ✅ | ✅ | ✅ | ◐ | ✅ | ◐ | ✅ | ✅ |
+| **Claude Desktop** | — | — | ✅ | — | — | — | ✅ | — | ✅ | ✅ |
+| **Codex (app)** | — | — | ✅ | — | — | — | ✅ | — | ✅ | ✅ |
+| **Claude Cowork** | — | — | ◐ | — | — | — | ✅ | — | ✅ | ✅ |
 
 ## 📦 Install
 
