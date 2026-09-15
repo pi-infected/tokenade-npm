@@ -1,5 +1,12 @@
 # Tokenade — what's new
 
+## 1.1.15
+
+- **Une mise à jour pouvait laisser le proxy local mort, et le dire à l'envers.** `tokenade upgrade` remplace le binaire, puis écrit le service qui le lance — et sous Linux, le chemin qu'un processus lit de lui-même porte alors le suffixe ` (deleted)`. Le service recevait donc `ExecStart=…/tokenade (deleted) llm-proxy …`, un chemin inexécutable : il ne redémarrait plus, le processus de la version PRÉCÉDENTE survivait sur l'ANCIEN port, et le superviseur répondait « actif » — vrai du service, faux de l'adresse. La mise à jour suivante sondait le nouveau port, n'obtenait rien, annonçait « not installed » et **défaisait la configuration de l'agent**, trois lignes sous le message inverse. **Cette version répare les machines déjà touchées** : le chemin passe par le tokenade installé, et un service dont le contenu a changé — ou dont le port ne répond pas — est relancé avant tout verdict.
+- **Le même bloc d'installation sortait une fois par agent.** Un seul service existe ; le poser trois fois affichait trois fois les mêmes cinq lignes, et le dernier agent écrasait l'amont du précédent sans un mot. Le même couple (port, amont) ne se réapplique plus, et un couple différent le dit — c'est un conflit, pas une répétition.
+- **« it is serving » devient « the unit is running ».** `systemctl is-active` répond du service, pas de l'adresse : la phrase ne promet plus que ce qu'elle a vérifié.
+
+
 ## 1.1.14
 
 - **Une question posée à une page web était posée à la coupe, pas à la page.** Sur une grosse page, le distillateur produit deux markdowns : la vue d'après le plafond dur — les titres sauvés, le corps jeté — et la page entière. `--prompt` recevait la première. L'extracteur cherchait donc la réponse dans ce qui restait après qu'on l'ait jetée. Mesuré sur la page des hooks de Claude Code (2,8 Mo de HTML) avec `--prompt updatedToolOutput` : le terme est **sept fois dans la page et zéro fois dans la vue écrêtée**, et la livraison était « nothing in this source answers that question » suivie du plan entier. Sur 39 pages réellement lues par des agents : **un repli devient zéro**, jetons nommés retrouvés 50/50, et la réduction passe de −80 % à **−85,5 %** — mesurée contre la page, pour une réponse strictement meilleure.
