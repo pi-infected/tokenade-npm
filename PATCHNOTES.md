@@ -1,5 +1,11 @@
 # Tokenade — what's new
 
+## 1.1.16
+
+- **Un agent, un proxy — et enfin un service par proxy.** tokenade attribue exprès un port distinct à chaque agent, parce que leurs amonts diffèrent : aider vers OpenAI, grok vers x.ai, qwen-code vers dashscope. Un seul processus ne peut pas servir les trois. Mais la couche qui installe le service au démarrage ne connaissait qu'**un** nom d'unité : les agents l'écrasaient tour à tour, le dernier gagnait, et les autres pointaient vers un port mort — que la mise à jour suivante constatait en défaisant leur configuration. Il y a désormais un service par port, l'unité unique d'avant est retirée à l'installation, et une désinstallation les enlève **tous**. Mesuré sur une machine à trois agents : trois services, trois processus, trois ports, là où un seul répondait.
+- **Le travail d'après-mise-à-jour est fait par la version qu'on vient d'installer.** Le processus qui exécute `tokenade upgrade` EST l'ancien binaire : il pose le nouveau, puis écrit les services avec sa propre logique — périmée. Un correctif livré dans une version ne prenait donc qu'à la mise à jour **suivante**, ce qui a fait croire à un correctif qui ne marchait pas. L'après-mise-à-jour est maintenant délégué au binaire fraîchement installé, avec repli interne s'il ne peut pas être lancé.
+
+
 ## 1.1.15
 
 - **Une mise à jour pouvait laisser le proxy local mort, et le dire à l'envers.** `tokenade upgrade` remplace le binaire, puis écrit le service qui le lance — et sous Linux, le chemin qu'un processus lit de lui-même porte alors le suffixe ` (deleted)`. Le service recevait donc `ExecStart=…/tokenade (deleted) llm-proxy …`, un chemin inexécutable : il ne redémarrait plus, le processus de la version PRÉCÉDENTE survivait sur l'ANCIEN port, et le superviseur répondait « actif » — vrai du service, faux de l'adresse. La mise à jour suivante sondait le nouveau port, n'obtenait rien, annonçait « not installed » et **défaisait la configuration de l'agent**, trois lignes sous le message inverse. **Cette version répare les machines déjà touchées** : le chemin passe par le tokenade installé, et un service dont le contenu a changé — ou dont le port ne répond pas — est relancé avant tout verdict.
