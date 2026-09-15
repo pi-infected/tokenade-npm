@@ -1,5 +1,9 @@
 # Tokenade — what's new
 
+## 1.1.17
+
+- **Une mise à jour remplace le binaire ; elle redémarre maintenant aussi les proxys qui tournent.** `tokenade upgrade` échangeait le fichier sans toucher aux démons : les proxys locaux, lancés une fois et supervisés, continuaient de répondre « ok » en servant le code de la version d'**avant** — pendant que la mise à jour annonçait « aucun processus périmé, la mise à jour est en service ». Mesuré sur une machine à trois agents après le passage en 1.1.16 : trois services actifs, trois processus dont l'exécutable avait été dételé du disque. La route de santé du proxy annonce désormais sa version ; l'installation automatique la compare à celle qui vient d'être posée et redémarre le service quand elles diffèrent — sur les trois systèmes, chacun par son superviseur (systemd, launchd, schtasks) et sur le service du **port** concerné. Un proxy qui ne nomme pas sa version est traité comme périmé, ce qui est exactement ce qu'il est. Et la phrase « aucun processus périmé » n'est plus écrite avant les réparations, mais après.
+
 ## 1.1.16
 
 - **Un agent, un proxy — et enfin un service par proxy.** tokenade attribue exprès un port distinct à chaque agent, parce que leurs amonts diffèrent : aider vers OpenAI, grok vers x.ai, qwen-code vers dashscope. Un seul processus ne peut pas servir les trois. Mais la couche qui installe le service au démarrage ne connaissait qu'**un** nom d'unité : les agents l'écrasaient tour à tour, le dernier gagnait, et les autres pointaient vers un port mort — que la mise à jour suivante constatait en défaisant leur configuration. Il y a désormais un service par port, l'unité unique d'avant est retirée à l'installation, et une désinstallation les enlève **tous**. Mesuré sur une machine à trois agents : trois services, trois processus, trois ports, là où un seul répondait.
