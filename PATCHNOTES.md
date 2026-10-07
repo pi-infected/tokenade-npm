@@ -1,5 +1,10 @@
 # Tokenade — what's new
 
+## 1.2.2
+- **Help pages match what the commands do.** `tokenade --help` and each command's `--help` were checked against the code: `install` points to `tokenade login`; `style` lists `auto` and says the setting is global; `llm-proxy` covers serving without `--upstream`, `--enable`, and when `install` sets the proxy up for you; `statusline` and `watch` have their own help; `codex-trust`, `ensure-hooks` and `audit-gains` are listed; hidden flags are now shown (`audit-claude-md --apply/--compress/--stale`, `gain --recent`, `search --html`, `index --json`, `upgrade --check`, `uninstall --keep-data`); and the main help points to your own TOML compactors (`add-compactor`).
+- **Plans and prices are current everywhere in the CLI.** The quota message shows Pro at €19.90/month incl. tax in Europe and $24.90/month excl. tax elsewhere, and pay-as-you-save at 10% of the API-cost value saved. `login` and `activate` no longer mention machine limits on Free and Pro, which have none.
+- **`uninstall --dry-run` only says what it would do.** A few lines read "removed" although nothing was touched.
+
 ## 1.2.1
 - **Web search can be fully left to your agent.** With `TOKENADE_NO_WEBSEARCH=1`, the agent's own web search was already left alone, but `tokenade search` still ran and the rules Tokenade writes still recommended it. Now the command refuses to run and the rules leave it out, so no query goes through Tokenade. The switch is documented in the README.
 - **The LLM proxy stops re-sending identical tool output.** When an agent reads the same unchanged file or gets the same command output twice, the proxy sends it once and replaces later copies with a short pointer to the first. This applies where the agent's own hooks don't already remove duplicates — for example Codex before its hooks are approved. Measured with Codex: the second read of a file went out as a pointer, and the answer was unchanged.
